@@ -2161,7 +2161,7 @@ int QCameraMuxer::cameraDeviceOpen(int camera_id,
     }
 
     cam->dev.common.tag = HARDWARE_DEVICE_TAG;
-    cam->dev.common.version = HARDWARE_DEVICE_API_VERSION(1, 0);
+    cam->dev.common.version = CAMERA_DEVICE_API_VERSION_1_0;
     cam->dev.common.close = close_camera_device;
     cam->dev.ops = &mCameraMuxerOps;
     cam->dev.priv = (void*)cam;

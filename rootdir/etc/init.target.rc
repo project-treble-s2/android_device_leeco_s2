@@ -264,7 +264,7 @@ service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
 service vendor.per_mgr /system/vendor/bin/pm-service
     class core
     user system
-    group system
+    group system net_raw
     ioprio rt 4
     writepid /dev/cpuset/system-background/tasks
 

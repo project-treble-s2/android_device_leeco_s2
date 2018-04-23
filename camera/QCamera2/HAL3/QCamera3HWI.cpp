@@ -325,7 +325,8 @@ QCamera3HardwareInterface::QCamera3HardwareInterface(uint32_t cameraId,
       mUpdateDebugLevel(false),
       mCallbacks(callbacks),
       mCaptureIntent(0),
-      mCacMode(0)
+      mCacMode(0),
+      mLastFocusDistance(0.0)
 {
     getLogLevel();
     mCameraDevice.common.tag = HARDWARE_DEVICE_TAG;
@@ -4430,6 +4431,11 @@ QCamera3HardwareInterface::translateCbUrgentMetadataToResultMetadata
 
     IF_META_AVAILABLE(float, focusDistance, CAM_INTF_META_LENS_FOCUS_DISTANCE, metadata) {
         camMetadata.update(ANDROID_LENS_FOCUS_DISTANCE , focusDistance, 1);
+	mLastFocusDistance = *focusDistance;
+    } else {
+	ALOGE("Missing LENS_FOCUS_DISTANCE metadata. Use last known distance of %f",
+		mLastFocusDistance);
+	camMetadata.update(ANDROID_LENS_FOCUS_DISTANCE , &mLastFocusDistance, 1);
     }
 
     IF_META_AVAILABLE(float, focusRange, CAM_INTF_META_LENS_FOCUS_RANGE, metadata) {

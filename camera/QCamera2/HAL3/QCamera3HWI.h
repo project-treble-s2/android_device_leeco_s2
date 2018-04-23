@@ -389,6 +389,7 @@ private:
     void *lib_surface_utils;
     int (*LINK_get_surface_pixel_alignment)();
     uint32_t mSurfaceStridePadding;
+    float mLastFocusDistance;
 };
 
 }; // namespace qcamera

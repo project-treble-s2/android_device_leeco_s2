@@ -307,6 +307,14 @@ on property:sys.powerctl=*
     stop vendor.per_proxy
     stop vendor.ims_rtp_daemon
 
+# CPU energy defaults per frequency
+service vendor.energy-awareness /system/vendor/bin/energy-awareness
+    class main
+    user root
+    group system
+    oneshot
+    disabled
+
 on property:persist.sys.le_fast_chrg_enable=1
     write /sys/class/power_supply/battery/le_quick_charge_mode 0
 

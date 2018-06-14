@@ -210,6 +210,10 @@ on boot
     # locks and process hints until it doesn't exists or it is empty.
     setprop vendor.post_boot.parsed 1
 
+
+    # Create hvdcp_opti directory
+    mkdir /persist/hvdcp_opti 0770 root system
+
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system

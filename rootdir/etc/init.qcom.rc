@@ -392,7 +392,6 @@ on property:sys.boot_completed=1
     chown media audio /sys/kernel/wcd_cpe0/fw_name
 
 on property:vold.decrypt=trigger_restart_framework
-    start config_bt_addr
     start wcnss-service
 
 on property:persist.env.fastdorm.enabled=true
@@ -446,12 +445,6 @@ service hci_filter_root /system/bin/wcnss_filter
     user bluetooth
     group bluetooth diag system
     disabled
-
-service config_bt_addr /system/vendor/bin/btnvtool -O
-    class core
-    user bluetooth
-    group bluetooth radio
-    oneshot
 
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /vendor/bin/qmuxd

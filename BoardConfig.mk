@@ -54,7 +54,6 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x00000100
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
 
 TARGET_KERNEL_SOURCE := kernel/leeco/msm8976
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
@@ -195,12 +194,6 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_s2
 
 # IPA
 USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR := true
-
-# Keymaster
-TARGET_PROVIDES_KEYMASTER := true
-
-# Lineage Hardware
-JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true

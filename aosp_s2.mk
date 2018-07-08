@@ -14,15 +14,18 @@
 # limitations under the License.
 #
 
+# Boot animation
+TARGET_BOOT_ANIMATION_RES := 1080
+
 # Inherit device configuration
 $(call inherit-product, device/leeco/s2/full_s2.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common AOSP stuff.
+$(call inherit-product, vendor/aosp/common.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := s2
-PRODUCT_NAME := lineage_s2
+PRODUCT_NAME := aosp_s2
 PRODUCT_BRAND := LeEco
 PRODUCT_MANUFACTURER := LeMobile
 

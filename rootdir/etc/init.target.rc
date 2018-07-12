@@ -248,7 +248,6 @@ service vendor.ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
     user system
     socket ims_rtpd stream 0660 system radio
     group radio diag inet log
-    disabled
     writepid /dev/cpuset/system-background/tasks
 
 service vendor.imsrcsservice /system/vendor/bin/imsrcsd
@@ -258,7 +257,7 @@ service vendor.imsrcsservice /system/vendor/bin/imsrcsd
     writepid /dev/cpuset/system-background/tasks
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
-    start vendor.ims_rtp_daemon
+    restart vendor.ims_rtp_daemon
 
 service gx_fpd /vendor/bin/gx_fpd
     class late_start

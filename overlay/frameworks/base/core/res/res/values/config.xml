@@ -473,6 +473,17 @@
          and one pSIM) -->
     <integer name="config_num_physical_slots">2</integer>
 
-   <!-- Whether the Unprocessed audio source supports the required frequency range and level -->
-   <bool name="config_supportAudioSourceUnprocessed">true</bool>
+    <!-- Whether the Unprocessed audio source supports the required frequency range and level -->
+    <bool name="config_supportAudioSourceUnprocessed">true</bool>
+
+    <!-- Is the battery LED intrusive? -->
+    <bool name="config_intrusiveBatteryLed">true</bool>
+
+    <!-- Does the battery LED support multiple colors? -->
+    <bool name="config_multiColorBatteryLed">true</bool>
+
+    <!-- Do the battery/notification LEDs support pulsing?
+        Used to decide if we show pulse settings -->
+    <bool name="config_ledCanPulse">true</bool>
+
 </resources>

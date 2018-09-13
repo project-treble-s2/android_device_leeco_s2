@@ -14,4 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_s2.mk
+    $(LOCAL_DIR)/arrow_s2.mk

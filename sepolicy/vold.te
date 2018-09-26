@@ -1,1 +1,2 @@
 allow vold persist_file:dir { r_dir_perms };
+allow vold sysfs_disk_stat:file create_file_perms;

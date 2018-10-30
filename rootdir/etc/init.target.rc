@@ -308,6 +308,7 @@ on property:init.svc.vendor.per_mgr=running
 
 on property:sys.powerctl=*
     stop vendor.per_proxy
+    stop vendor.ims_rtp_daemon
 
 on property:persist.sys.le_fast_chrg_enable=1
     write /sys/class/power_supply/battery/le_quick_charge_mode 0

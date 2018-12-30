@@ -192,9 +192,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/ad_calib.cfg:system/etc/ad_calib.cfg
 
-# Doze mode
+# Device specific settings
 PRODUCT_PACKAGES += \
-    Doze
+    LeEcoParts
 
 # Fake logprint for fingerprint libs
 PRODUCT_PACKAGES += \

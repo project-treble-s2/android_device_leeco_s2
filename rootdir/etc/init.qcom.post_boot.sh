@@ -26,9 +26,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-MemTotalStr=`cat /proc/meminfo | grep MemTotal`
-MemTotal=${MemTotalStr:16:8}
-
 # Read adj series and set adj threshold for PPR and ALMK.
 # This is required since adj values change from framework to framework.
 adj_series=`cat /sys/module/lowmemorykiller/parameters/adj`
@@ -62,17 +59,13 @@ echo $set_almk_ppr_adj > /sys/module/process_reclaim/parameters/min_score_adj
 #
 # Calculate vmpressure_file_min as below & set for 64 bit:
 # vmpressure_file_min = last_lmk_bin + (last_lmk_bin - last_but_one_lmk_bin)
-if [ $MemTotal -gt 2097152 ]; then
-    echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
-else
-    echo "14746,18432,22118,25805,40000,55000" > /sys/module/lowmemorykiller/parameters/minfree
-fi
+echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
 
 echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
 echo 70 > /sys/module/process_reclaim/parameters/pressure_max
-echo 50 > /sys/module/process_reclaim/parameters/pressure_min
+echo 10 > /sys/module/process_reclaim/parameters/pressure_min
 echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
-echo 512 > /sys/module/process_reclaim/parameters/per_swap_size
+echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
 echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
 echo 100 > /proc/sys/vm/swappiness
 
@@ -158,8 +151,8 @@ echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
 echo 40000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
 echo 400000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 echo 59000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
-echo 1305600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-echo "1 691200:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+echo 806400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+echo "1 400000:60 691200:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
 
 # enable governor for perf cluster
 echo 1 > /sys/devices/system/cpu/cpu4/online
@@ -171,9 +164,9 @@ echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
 echo 400000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 echo 60000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
-echo 1382400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-echo "85 1382400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+echo 1113600 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+echo "19000 1113600:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+echo "85 1113600:90 1612800:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
 
 # HMP Task packing settings for 8976
 echo 30 > /proc/sys/kernel/sched_small_task
@@ -201,8 +194,8 @@ echo 1 > /sys/devices/system/cpu/cpu7/online
 # Enable LPM Prediction
 echo 1 > /sys/module/lpm_levels/parameters/lpm_prediction
 
-# Enable Low power modes
-echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+# remove interaction lock when idle
+echo 100 > /sys/devices/virtual/graphics/fb0/idle_time
 
 # Disable L2 GDHS on 8976
 echo N > /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled

@@ -82,10 +82,12 @@
         <version>1.0</version>
         <interface>
             <name>ICryptoFactory</name>
+            <instance>clearkey</instance>
             <instance>default</instance>
         </interface>
         <interface>
             <name>IDrmFactory</name>
+            <instance>clearkey</instance>
             <instance>default</instance>
         </interface>
         <fqname>@1.1::ICryptoFactory/clearkey</fqname>
@@ -391,6 +393,15 @@
         <interface>
             <name>IServer</name>
             <instance>cnd</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.qti.data.factory</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IFactory</name>
+            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl">

@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
- * Copyright (C) 2017-2018 The LineageOS Project
+ * Copyright (C) 2018 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 #define LOG_TAG "ConsumerIrService"
 
 #include <fcntl.h>
-#include <log/log.h>
 
+#include <android-base/logging.h>
+
+#include <iostream>
+#include <vector>
 #include "ConsumerIr.h"
+
+#include <sys/types.h>
+#include <unistd.h>
 
 namespace android {
 namespace hardware {
@@ -36,12 +42,30 @@ static hidl_vec<ConsumerIrFreqRange> rangeVec{
     {.min = 56000, .max = 56000},
 };
 
+// Methods from ::android::hardware::ir::V1_0::IConsumerIr follow.
 Return<bool> ConsumerIr::transmit(int32_t carrierFreq, const hidl_vec<int32_t>& pattern) {
-    size_t entries = pattern.size();
+    if (pattern.size() > 0) {
+        std::ostringstream vts;
 
-    // call into libcir_driver
-    ALOGD("transmitting pattern at %d Hz", carrierFreq);
-    return 0;
+        // Convert all but the last element to avoid a trailing ","
+        std::copy(pattern.begin(), pattern.end() - 1, std::ostream_iterator<int32_t>(vts, ","));
+
+        vts << pattern[pattern.size() - 1];
+
+        std::stringstream ss;
+        ss << "/system/bin/am broadcast -a "
+              "org.lineageos.consumerirtransmitter.TRANSMIT_IR --es carrier_freq "
+           << carrierFreq << " --es pattern " << vts.str();
+
+        int child = fork();
+        if (child == 0) {
+            execl("/system/bin/sh", "sh", "-c", ss.str().c_str(), (char*)0);
+        }
+
+        return true;
+    }
+
+    return false;
 }
 
 Return<void> ConsumerIr::getCarrierFreqs(getCarrierFreqs_cb _hidl_cb) {

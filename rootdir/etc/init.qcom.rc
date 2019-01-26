@@ -56,7 +56,7 @@ on post-fs
     chmod 0755 /sys/kernel/debug/tracing
     # Allow writing to the kernel trace log.
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
-
+    
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -142,8 +142,8 @@ on boot
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
-#   Assign TCP buffer thresholds to be ceiling value of technology maximums
-#   Increased technology maximums should be reflected here.
+    # Assign TCP buffer thresholds to be ceiling value of technology maximums
+    # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  16777216
     write /proc/sys/net/core/wmem_max  8388608
 
@@ -200,9 +200,6 @@ on boot
     chmod 0664 /dev/cpuset/camera-daemon/tasks
     write /dev/cpuset/camera-daemon/cpus 0-3
     write /dev/cpuset/camera-daemon/mems 0
-
-on post-fs
-    start qseecomd
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -270,8 +267,8 @@ on post-fs-data
     chmod 0770 /data/vendor/dataqti
 
     # Create the directories used by CnE subsystem
-    mkdir /data/vendor/connectivity 0771 system system
-    chown system system /data/vendor/connectivity
+    mkdir /data/vendor/connectivity 0771 radio radio
+    chown radio radio /data/vendor/connectivity
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
@@ -285,10 +282,13 @@ on post-fs-data
 
     # Create directory for radio
     mkdir /data/vendor/radio 0770 system radio
+    
+    # Create directory for modem_config
+    mkdir /data/vendor/modem_config 0570 radio root
 
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
-    chown system system /persist
+    chown root system /persist
     chmod 0771 /persist
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
@@ -408,75 +408,78 @@ on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/read_ahead_kb 128
     write /sys/block/mmcblk0rpmb/bdi/read_ahead_kb 128
     write /sys/block/mmcblk0rpmb/queue/read_ahead_kb 128
+    
+    # Enable hvdcp
+    setprop persist.hvdcp.allow_opti 1
 
 on property:vold.decrypt=trigger_restart_framework
-    start wcnss-service
+    start vendor.wcnss-service
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
-service cnd /vendor/bin/cnd
+service vendor.cnd /vendor/bin/cnd
     class main
     user system
     group system wifi inet radio wakelock net_admin
     writepid /dev/cpuset/system-background/tasks
 
-service dpmQmiMgr /system/vendor/bin/dpmQmiMgr
+service vendor.dpmQmiMgr /system/vendor/bin/dpmQmiMgr
     class main
     user system
     group radio system
     writepid /dev/cpuset/system-background/tasks
 
-service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
+service vendor.irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
     user root
     oneshot
 
-service rmt_storage /vendor/bin/rmt_storage
+service vendor.rmt_storage /vendor/bin/rmt_storage
     class core
     user root
     shutdown critical 
     ioprio rt 0
     writepid /dev/cpuset/system-background/tasks
 
-service tftp_server /vendor/bin/tftp_server
+service vendor.tftp_server /vendor/bin/tftp_server
     class core
     user root
     writepid /dev/cpuset/system-background/tasks
 
 # QMUX must be in multiple groups to support external process connections
-service qmuxd /vendor/bin/qmuxd
+service vendor.qmuxd /vendor/bin/qmuxd
     class main
     user root
     group radio audio bluetooth gps nfc diag
     writepid /dev/cpuset/system-background/tasks
 
-service netmgrd /vendor/bin/netmgrd
+service vendor.netmgrd /vendor/bin/netmgrd
     class main
     group root wifi wakelock radio inet oem_2901
     writepid /dev/cpuset/system-background/tasks
 
-service ipacm /vendor/bin/ipacm
+service vendor.ipacm /vendor/bin/ipacm
     class main
     user radio
     group radio inet
     writepid /dev/cpuset/system-background/tasks
 
-service qti /vendor/bin/qti
+service vendor.qti /vendor/bin/qti
     class main
     user radio
     group radio oem_2901 diag usb net_admin
     writepid /dev/cpuset/system-background/tasks
 
-service sensors /vendor/bin/sensors.qcom
+service vendor.sensors /vendor/bin/sensors.qcom
     class core
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
 
-on property:ro.use_data_netmgrd=false
+on property:ro.vendor.use_data_netmgrd=false
     # netmgr not supported on specific target
-    stop netmgrd
+    stop vendor.netmgrd
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
@@ -489,12 +492,12 @@ on property:sys.sysctl.tcp_adv_win_scale=*
 service wpa_supplicant /system/vendor/bin/hw/wpa_supplicant \
     -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 \
     -g@android:wpa_wlan0
-    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
-    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
     # we will start as root and wpa_supplicant will switch to user wifi
     # after setting up the capabilities required for WEXT
     # user wifi
     # group wifi inet keystore
+    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
+    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -503,14 +506,15 @@ service wpa_supplicant /system/vendor/bin/hw/wpa_supplicant \
 service vendor.loc_launcher /system/vendor/bin/loc_launcher
     class late_start
     group gps inet diag wifi
+    writepid /dev/cpuset/system-background/tasks
 
-service qcom-sh /vendor/bin/init.qcom.sh
+service vendor.qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
     group root system radio
     oneshot
 
-service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
+service vendor.qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     class late_start
     user root
     group root system wakelock
@@ -518,37 +522,43 @@ service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     oneshot
 
 on property:sys.boot_completed=1
-    start qcom-post-boot
+    start vendor.qcom-post-boot
     trigger enable-low-power
 
 on property:init.svc.recovery=running
     trigger enable-low-power
 
-service atfwd /vendor/bin/ATFWD-daemon
+service vendor.atfwd /vendor/bin/ATFWD-daemon
     class late_start
     user system
     group system radio
-    disabled
+    writepid /dev/cpuset/system-background/tasks
 
-on property:persist.radio.atfwd.start=true
-    start atfwd
+on property:persist.vendor.radio.atfwd.start=false
+    stop vendor.atfwd
+
+on property:vendor.radio.atfwd.start=false
+    stop vendor.atfwd
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale 2
 
-service ril-daemon2 /vendor/bin/hw/rild -c 2
+service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
-    socket rild2 stream 660 root radio
-    socket rild-debug2 stream 660 radio system
     user radio
+    disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+
+on property:persist.radio.multisim.config=dsds
+    enable vendor.ril-daemon2
 
 service charger /charger
     class charger
     group system graphics
     seclabel u:r:healthd:s0
+    writepid /dev/cpuset/system-background/tasks
 
 service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
     class core
@@ -564,22 +574,17 @@ service vendor.msm_irqbal_lb /vendor/bin/msm_irqbalance -f /system/vendor/etc/ms
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-on charger
-    setprop persist.sys.usb.config mass_storage
-    load_system_props
-    start qcom-post-boot
-
 on property:init.svc.surfaceflinger=restarting
     stop vendor.hwcomposer-2-1
     start vendor.hwcomposer-2-1
 
-service time_daemon /system/vendor/bin/time_daemon
+service vendor.time_daemon /system/vendor/bin/time_daemon
     class main
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
 
-service power_off_alarm /vendor/bin/power_off_alarm
+service vendor.power_off_alarm /vendor/bin/power_off_alarm
     class core
     group system
     disabled

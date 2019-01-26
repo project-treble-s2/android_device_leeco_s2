@@ -148,7 +148,8 @@ PRODUCT_PACKAGES += \
     libqomx_core \
     libmmcamera_interface \
     libmmjpeg_interface \
-    libgui_vendor
+    libgui_vendor \
+    libmm-qcamera
 endif
 
 PRODUCT_COPY_FILES +=  \
@@ -276,6 +277,7 @@ PRODUCT_PACKAGES += \
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
+    libmm-omxcore \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \

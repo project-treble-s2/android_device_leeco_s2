@@ -281,6 +281,14 @@ PRODUCT_PACKAGES += \
     libshims_camera \
     libshims_ims
 
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8952
+
+# Livedisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@1.0-service-legacymm
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \

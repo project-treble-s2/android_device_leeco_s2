@@ -212,6 +212,9 @@ USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR := true
 # Lineage Hardware
 JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
 
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 

@@ -85,7 +85,7 @@ PRODUCT_PACKAGES += \
 
 # Light
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.aw2013
+    android.hardware.light@2.0-impl
 
 # Net
 PRODUCT_PACKAGES += \

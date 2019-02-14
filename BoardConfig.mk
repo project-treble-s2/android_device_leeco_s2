@@ -195,9 +195,6 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_s2
 # IPA
 USE_DEVICE_SPECIFIC_DATA_IPA_CFG_MGR := true
 
-# Keymaster
-TARGET_PROVIDES_KEYMASTER := true
-
 # Lineage Hardware
 JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
 

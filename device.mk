@@ -266,9 +266,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8952
 
-# LeEco Parts
+# LeEco Modules
 PRODUCT_PACKAGES += \
-    LeEcoParts
+    LeEcoParts \
+    LePref
 
 # Libshims
 PRODUCT_PACKAGES += \

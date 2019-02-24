@@ -77,7 +77,7 @@ minfree_4="${minfree_3#*,}" ; rem_minfree_4="${minfree_4%%,*}"
 minfree_5="${minfree_4#*,}"
 vmpres_file_min=$((minfree_5 + (minfree_5 - rem_minfree_4)))
 echo $vmpres_file_min > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
-echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+echo 0 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 
 # Enable B service adj transition
 #setprop ro.vendor.qti.sys.fw.bservice_enable true

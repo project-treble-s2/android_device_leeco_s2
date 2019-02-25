@@ -521,6 +521,12 @@ service vendor.loc_launcher /system/vendor/bin/loc_launcher
     group gps inet diag wifi
     writepid /dev/cpuset/system-background/tasks
 
+service proc-touchpanel-sh /vendor/bin/init.proc_touchpanel.sh
+    class late_start
+    user root
+    group root system
+    oneshot
+
 service vendor.qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root

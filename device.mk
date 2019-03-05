@@ -269,6 +269,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     LePref
 
+# LeEco IR remote
+PRODUCT_PACKAGES += \
+    LeRemote
+
 # Libshims
 PRODUCT_PACKAGES += \
     libshims_camera \

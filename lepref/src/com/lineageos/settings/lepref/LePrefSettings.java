@@ -30,11 +30,15 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
     private static final boolean DEBUG = false;
     private static final String TAG = "LePref";
     private static final String ENABLE_QC_KEY = "qc_setting";
+    private static final String ENABLE_VSYNC_KEY = "vsync_setting";
     private static final String ENABLE_IB_RING = "ibr_setting";
+    private static final String VSYNC_SYSTEM_PROPERTY = "debug.cpurend.vsync";
+    private static final String BACKPRESSURE_SYSTEM_PROPERTY = "debug.sf.disable_backpressure";
     private static final String QC_SYSTEM_PROPERTY = "persist.sys.le_fast_chrg_enable";
     private static final String IB_RING_SYSTEM_PROPERTY = "persist.bluetooth.disableinbandringing";
 
     private SwitchPreference mEnableQC;
+    private SwitchPreference mEnableVSync;
     private SwitchPreference mIbRing;
 
     private Context mContext;
@@ -49,6 +53,10 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
         mEnableQC = (SwitchPreference) findPreference(ENABLE_QC_KEY);
         mEnableQC.setChecked(SystemProperties.getBoolean(QC_SYSTEM_PROPERTY, true));
         mEnableQC.setOnPreferenceChangeListener(this);
+        
+        mEnableVSync = (SwitchPreference) findPreference(ENABLE_VSYNC_KEY);
+        mEnableVSync.setChecked(SystemProperties.getBoolean(VSYNC_SYSTEM_PROPERTY, false));
+        mEnableVSync.setOnPreferenceChangeListener(this);
 
         mIbRing = (SwitchPreference) findPreference(ENABLE_IB_RING);
         mIbRing.setChecked(!SystemProperties.getBoolean(IB_RING_SYSTEM_PROPERTY, false));
@@ -61,6 +69,17 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
         SystemProperties.set(QC_SYSTEM_PROPERTY, "1");
       } else {
         SystemProperties.set(QC_SYSTEM_PROPERTY, "0");
+      }
+    }
+    
+    // Control Vertical Sync
+    private void setEnableVSync(boolean value) {
+      if(value) {
+        SystemProperties.set(VSYNC_SYSTEM_PROPERTY, "true");
+        SystemProperties.set(BACKPRESSURE_SYSTEM_PROPERTY, "0");
+      } else {
+        SystemProperties.set(VSYNC_SYSTEM_PROPERTY, "false");
+        SystemProperties.set(BACKPRESSURE_SYSTEM_PROPERTY, "1");
       }
     }
     
@@ -96,6 +115,12 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
           value = (Boolean) newValue;
           mEnableQC.setChecked(value);
           setEnableQC(value);
+          return true;
+		    }
+        if (ENABLE_VSYNC_KEY.equals(key)) {
+          value = (Boolean) newValue;
+          mEnableVSync.setChecked(value);
+          setEnableVSync(value);
           return true;
 		    }
         if (ENABLE_IB_RING.equals(key)) {

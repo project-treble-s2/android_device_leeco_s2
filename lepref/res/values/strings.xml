@@ -17,6 +17,9 @@
       <string name="battery_settings_title">Battery</string>
       <string name="qc_title">Quick Charge</string>
       <string name="qc_summary">Enable/disable quick charge settings</string>
+      <string name="graphics_settings_title">Graphics</string>
+      <string name="vsync_title">V-Sync</string>
+      <string name="vsync_summary">Enable/disable vertical sync</string>
       <string name="sound_settings_title">Sound</string>
       <string name="ibr_title">In-band Ringing</string>
       <string name="ibr_summary">Enable/disable in-band ringing</string>

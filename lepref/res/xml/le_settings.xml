@@ -10,7 +10,18 @@
             android:title="@string/qc_title"
             android:summary="@string/qc_summary" />
     </PreferenceCategory>
-           
+    
+    <PreferenceCategory
+        android:key="graphics"
+        android:title="@string/graphics_settings_title" >
+
+        <SwitchPreference
+            android:key="vsync_setting"
+            android:defaultValue="false"
+            android:title="@string/vsync_title"
+            android:summary="@string/vsync_summary" />
+    </PreferenceCategory>
+    
     <PreferenceCategory
         android:key="sound"
         android:title="@string/sound_settings_title" >

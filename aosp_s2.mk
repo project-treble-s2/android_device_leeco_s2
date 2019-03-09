@@ -42,3 +42,8 @@ PRODUCT_SYSTEM_PROPERTY_BLACKLIST += ro.product.model
 
 # Release name
 PRODUCT_RELEASE_NAME := s2
+
+# Use Gapps
+WITH_GAPPS := true
+TARGET_GAPPS_ARCH := arm64
+IS_PHONE := true

@@ -32,14 +32,18 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
     private static final String ENABLE_QC_KEY = "qc_setting";
     private static final String ENABLE_VSYNC_KEY = "vsync_setting";
     private static final String ENABLE_IB_RING = "ibr_setting";
+    private static final String ENABLE_IAF_KEY = "iaf_setting";
+    
     private static final String VSYNC_SYSTEM_PROPERTY = "debug.cpurend.vsync";
     private static final String BACKPRESSURE_SYSTEM_PROPERTY = "debug.sf.disable_backpressure";
     private static final String QC_SYSTEM_PROPERTY = "persist.sys.le_fast_chrg_enable";
     private static final String IB_RING_SYSTEM_PROPERTY = "persist.bluetooth.disableinbandringing";
+    private static final String IAF_SYSTEM_PROPERTY = "persist.camera.HAL3.enabled";
 
     private SwitchPreference mEnableQC;
     private SwitchPreference mEnableVSync;
     private SwitchPreference mIbRing;
+    private SwitchPreference mEnableIAF;
 
     private Context mContext;
     private SharedPreferences mPreferences;
@@ -61,6 +65,10 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
         mIbRing = (SwitchPreference) findPreference(ENABLE_IB_RING);
         mIbRing.setChecked(!SystemProperties.getBoolean(IB_RING_SYSTEM_PROPERTY, false));
         mIbRing.setOnPreferenceChangeListener(this);
+        
+        mEnableIAF = (SwitchPreference) findPreference(ENABLE_IAF_KEY);
+        mEnableIAF.setChecked(!SystemProperties.getBoolean(IAF_SYSTEM_PROPERTY, true));
+        mEnableIAF.setOnPreferenceChangeListener(this);
     }
       
     // Control Quick Charge
@@ -92,9 +100,25 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
       }
     }
     
+    // Control In-App Focus Fix
+    private void setEnableIAF(boolean value) {
+      if(value) {
+        SystemProperties.set(IAF_SYSTEM_PROPERTY, "0");
+      } else {
+        SystemProperties.set(IAF_SYSTEM_PROPERTY, "1");
+      }
+      SystemProperties.set("init.prop.toggle.iaf", "1");
+    }
+    
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+      super.onStop();
+      SystemProperties.set("init.prop.toggle.iaf", "0");
     }
 
     @Override
@@ -127,6 +151,12 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
           value = (Boolean) newValue;
           mIbRing.setChecked(value);
           setEnableIbRing(value);
+          return true;
+        }
+        if (ENABLE_IAF_KEY.equals(key)) {
+          value = (Boolean) newValue;
+          mEnableIAF.setChecked(value);
+          setEnableIAF(value);
           return true;
         }
         return false;

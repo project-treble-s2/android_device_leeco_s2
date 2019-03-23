@@ -32,4 +32,14 @@
             android:title="@string/ibr_title"
             android:summary="@string/ibr_summary" />
     </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:key="others"
+        android:title="@string/others_settings_title" >
+
+        <SwitchPreference
+            android:key="iaf_setting"
+            android:defaultValue="false"
+            android:title="@string/iaf_title"/>
+    </PreferenceCategory>
 </PreferenceScreen>

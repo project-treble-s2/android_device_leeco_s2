@@ -12,4 +12,6 @@
     <public type="string" name="sound_settings_title" id="0x7f050007" />
     <public type="string" name="ibr_title" id="0x7f050008" />
     <public type="string" name="ibr_summary" id="0x7f050009" />
+    <public type="string" name="others_settings_title" id="0x7f05000A" />
+    <public type="string" name="iaf_title" id="0x7f05000B" />
 </resources>

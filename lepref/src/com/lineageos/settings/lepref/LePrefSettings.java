@@ -10,11 +10,14 @@
 
 package com.lineageos.settings.lepref;
 
+import android.app.ActivityManager;
+import android.app.IActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.os.Build;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
@@ -145,6 +148,7 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
           value = (Boolean) newValue;
           mEnableVSync.setChecked(value);
           setEnableVSync(value);
+          restartSystemUi(mContext);
           return true;
 		    }
         if (ENABLE_IB_RING.equals(key)) {
@@ -160,5 +164,36 @@ public class LePrefSettings extends PreferenceActivity implements OnPreferenceCh
           return true;
         }
         return false;
+    }
+    
+    private static void restartSystemUi(Context context) {
+        new RestartSystemUiTask(context).execute();
+    }
+    
+    private static class RestartSystemUiTask extends AsyncTask<Void, Void, Void> {
+        private Context mContext;
+
+        public RestartSystemUiTask(Context context) {
+            super();
+            mContext = context;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                ActivityManager am =
+                        (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+                IActivityManager ams = ActivityManager.getService();
+                for (ActivityManager.RunningAppProcessInfo app: am.getRunningAppProcesses()) {
+                    if ("com.android.systemui".equals(app.processName)) {
+                        ams.killApplicationProcess(app.processName, app.uid);
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

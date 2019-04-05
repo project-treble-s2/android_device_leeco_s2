@@ -8,6 +8,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libgnss
 LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_TAGS := optional
+LOCAL_VENDOR_MODULE := true
 
 LOCAL_SHARED_LIBRARIES := \
     libutils \

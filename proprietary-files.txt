@@ -1,64 +1,64 @@
 # ACDB Data
-etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Bluetooth_cal.acdb
-etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_General_cal.acdb
-etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Global_cal.acdb
-etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Handset_cal.acdb
-etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Hdmi_cal.acdb
-etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Headset_cal.acdb
-etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Speaker_cal.acdb
-etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Bluetooth_cal.acdb
-etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_General_cal.acdb
-etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Global_cal.acdb
-etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Handset_cal.acdb
-etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Hdmi_cal.acdb
-etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Headset_cal.acdb
-etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Speaker_cal.acdb
-etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
-etc/acdbdata/MTP/MTP_General_cal.acdb
-etc/acdbdata/MTP/MTP_Global_cal.acdb
-etc/acdbdata/MTP/MTP_Handset_cal.acdb
-etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
-etc/acdbdata/MTP/MTP_Headset_cal.acdb
-etc/acdbdata/MTP/MTP_Speaker_cal.acdb
-etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Bluetooth_cal.acdb
-etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_General_cal.acdb
-etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Global_cal.acdb
-etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Handset_cal.acdb
-etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Hdmi_cal.acdb
-etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Headset_cal.acdb
-etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Speaker_cal.acdb
-etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
-etc/acdbdata/QRD/QRD_General_cal.acdb
-etc/acdbdata/QRD/QRD_Global_cal.acdb
-etc/acdbdata/QRD/QRD_Handset_cal.acdb
-etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
-etc/acdbdata/QRD/QRD_Headset_cal.acdb
-etc/acdbdata/QRD/QRD_Speaker_cal.acdb
+vendor/etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Bluetooth_cal.acdb
+vendor/etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_General_cal.acdb
+vendor/etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Global_cal.acdb
+vendor/etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Handset_cal.acdb
+vendor/etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Hdmi_cal.acdb
+vendor/etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Headset_cal.acdb
+vendor/etc/acdbdata/MTP/msm8952-tomtom-snd-card/MTP_WCD9330_Speaker_cal.acdb
+vendor/etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Bluetooth_cal.acdb
+vendor/etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_General_cal.acdb
+vendor/etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Global_cal.acdb
+vendor/etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Handset_cal.acdb
+vendor/etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Hdmi_cal.acdb
+vendor/etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Headset_cal.acdb
+vendor/etc/acdbdata/MTP/msm8976-tasha-snd-card/MTP_WCD9335_Speaker_cal.acdb
+vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
+vendor/etc/acdbdata/MTP/MTP_General_cal.acdb
+vendor/etc/acdbdata/MTP/MTP_Global_cal.acdb
+vendor/etc/acdbdata/MTP/MTP_Handset_cal.acdb
+vendor/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
+vendor/etc/acdbdata/MTP/MTP_Headset_cal.acdb
+vendor/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
+vendor/etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Bluetooth_cal.acdb
+vendor/etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_General_cal.acdb
+vendor/etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Global_cal.acdb
+vendor/etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Handset_cal.acdb
+vendor/etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Hdmi_cal.acdb
+vendor/etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Headset_cal.acdb
+vendor/etc/acdbdata/QRD/msm8976-skun-snd-card/QRD_SKUN_Speaker_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_General_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Global_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Handset_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Headset_cal.acdb
+vendor/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
 
 # Audio libraries
-etc/settings/mono_qcom.cnt
--lib/libtfa9890.so
--lib64/libtfa9890.so
+vendor/etc/settings/mono_qcom.cnt
+-vendor/lib/libtfa9890.so
+-vendor/lib64/libtfa9890.so
 
 # Camera
-bin/mm-qcamera-daemon|38080d77baf6f4d20c9a967cf39f23479d843c19
-lib/libcamera_letv_algo.so
-lib/libLetvCameraImageSDK.so
-lib/libamipengine.so
-lib/libarcimgutilsbase.so
-lib/libarcimgutils.so
-lib/libarcsoft_beautyshot.so
-lib/libarcsoft_face_detection.so
-lib/libarcsoft_face_tracking.so
-lib/libarcsoft_hdr.so
-lib/libarcsoft_night_shot.so
-lib/libarcsoft_panorama_burstcapture.so
-lib/libarcsoft_smart_denoise.so
-lib/libmpbase.so
-lib/libmpkernel.so
-lib/libmpstream.so
-lib/libmputility.so
-lib/libstlport.so
+vendor/bin/mm-qcamera-daemon|38080d77baf6f4d20c9a967cf39f23479d843c19
+vendor/lib/libcamera_letv_algo.so
+vendor/lib/libLetvCameraImageSDK.so
+vendor/lib/libamipengine.so
+vendor/lib/libarcimgutilsbase.so
+vendor/lib/libarcimgutils.so
+vendor/lib/libarcsoft_beautyshot.so
+vendor/lib/libarcsoft_face_detection.so
+vendor/lib/libarcsoft_face_tracking.so
+vendor/lib/libarcsoft_hdr.so
+vendor/lib/libarcsoft_night_shot.so
+vendor/lib/libarcsoft_panorama_burstcapture.so
+vendor/lib/libarcsoft_smart_denoise.so
+vendor/lib/libmpbase.so
+vendor/lib/libmpkernel.so
+vendor/lib/libmpstream.so
+vendor/lib/libmputility.so
+vendor/lib/libstlport.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
@@ -267,14 +267,14 @@ vendor/lib/libchromatix_ov8865_sunny_ffhy_20_zsl_preview.so
 vendor/lib/libchromatix_ov8865_sunny_ffhy_20_zsl_video.so
 
 # Camera firmware
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
-etc/firmware/cpp_firmware_v1_4_0.fw
-etc/firmware/cpp_firmware_v1_5_0.fw
-etc/firmware/cpp_firmware_v1_6_0.fw
-etc/firmware/cpp_firmware_v1_8_0.fw
-etc/firmware/cpp_firmware_v1_10_0.fw
+vendor/etc/firmware/cpp_firmware_v1_1_1.fw
+vendor/etc/firmware/cpp_firmware_v1_1_6.fw
+vendor/etc/firmware/cpp_firmware_v1_2_0.fw
+vendor/etc/firmware/cpp_firmware_v1_4_0.fw
+vendor/etc/firmware/cpp_firmware_v1_5_0.fw
+vendor/etc/firmware/cpp_firmware_v1_6_0.fw
+vendor/etc/firmware/cpp_firmware_v1_8_0.fw
+vendor/etc/firmware/cpp_firmware_v1_10_0.fw
 
 # Camera sensors
 vendor/lib/libmmcamera_ov16880_primax_bahy_6c.so
@@ -288,79 +288,79 @@ vendor/lib/libmmcamera_primax_ov16880_og05l_eeprom.so
 vendor/lib/libmmcamera_sunny_ov8865_d8v05f_eeprom.so
 
 # Dolby
-etc/dts/dts-m6m8-lic.key
+vendor/etc/dts/dts-m6m8-lic.key
 
 # Display Calibration data
-etc/pp_calib_data_boe_nt35596s_fhd_vdo_dsi_panel.xml
-etc/pp_calib_data_boe_nt36760_fhd_cmd_dsi_panel.xml
-etc/pp_calib_data_truly_r69006_fhd_cmd_dsi_panel.xml
+vendor/etc/pp_calib_data_boe_nt35596s_fhd_vdo_dsi_panel.xml
+vendor/etc/pp_calib_data_boe_nt36760_fhd_cmd_dsi_panel.xml
+vendor/etc/pp_calib_data_truly_r69006_fhd_cmd_dsi_panel.xml
 
 # Fingerprint sensor
-lib64/hw/fingerprint.vendor.msm8952.so
-lib64/hw/gxfingerprint.default.so
-lib64/libfp_client.so
-lib64/libfpnav.so
-lib64/libfpservice.so
-lib64/libfp_gf_intejni.so
+vendor/lib64/hw/fingerprint.vendor.msm8952.so
+vendor/lib64/hw/gxfingerprint.default.so
+vendor/lib64/libfp_client.so
+vendor/lib64/libfpnav.so
+vendor/lib64/libfpservice.so
+vendor/lib64/libfp_gf_intejni.so
 vendor/bin/gx_fpd
 vendor/bin/gx_fpcmd
 
 # Fingerprint firmware
-etc/firmware/goodixfp.b00
-etc/firmware/goodixfp.b01
-etc/firmware/goodixfp.b02
-etc/firmware/goodixfp.b03
-etc/firmware/goodixfp.mdt
+vendor/etc/firmware/goodixfp.b00
+vendor/etc/firmware/goodixfp.b01
+vendor/etc/firmware/goodixfp.b02
+vendor/etc/firmware/goodixfp.b03
+vendor/etc/firmware/goodixfp.mdt
 
 # Firmware
-etc/firmware/alipay.b00
-etc/firmware/alipay.b01
-etc/firmware/alipay.b02
-etc/firmware/alipay.b03
-etc/firmware/alipay.mdt
-etc/firmware/DE.o.msm8952
-etc/firmware/DE.o.msm8976
-etc/firmware/dxhdcp2.b00
-etc/firmware/dxhdcp2.b01
-etc/firmware/dxhdcp2.b02
-etc/firmware/dxhdcp2.b03
-etc/firmware/dxhdcp2.mdt
-etc/firmware/fidotap.b00
-etc/firmware/fidotap.b01
-etc/firmware/fidotap.b02
-etc/firmware/fidotap.b03
-etc/firmware/fidotap.mbn
-etc/firmware/fidotap.mdt
-etc/firmware/ice40.bin
-etc/firmware/leia_pfp_470.fw
-etc/firmware/leia_pm4_470.fw
+vendor/etc/firmware/alipay.b00
+vendor/etc/firmware/alipay.b01
+vendor/etc/firmware/alipay.b02
+vendor/etc/firmware/alipay.b03
+vendor/etc/firmware/alipay.mdt
+vendor/etc/firmware/DE.o.msm8952
+vendor/etc/firmware/DE.o.msm8976
+vendor/etc/firmware/dxhdcp2.b00
+vendor/etc/firmware/dxhdcp2.b01
+vendor/etc/firmware/dxhdcp2.b02
+vendor/etc/firmware/dxhdcp2.b03
+vendor/etc/firmware/dxhdcp2.mdt
+vendor/etc/firmware/fidotap.b00
+vendor/etc/firmware/fidotap.b01
+vendor/etc/firmware/fidotap.b02
+vendor/etc/firmware/fidotap.b03
+vendor/etc/firmware/fidotap.mbn
+vendor/etc/firmware/fidotap.mdt
+vendor/etc/firmware/ice40.bin
+vendor/etc/firmware/leia_pfp_470.fw
+vendor/etc/firmware/leia_pm4_470.fw
 
 # Media firmware
-etc/firmware/venus.b00
-etc/firmware/venus.b01
-etc/firmware/venus.b02
-etc/firmware/venus.b03
-etc/firmware/venus.b04
-etc/firmware/venus.mbn
-etc/firmware/venus.mdt
-etc/firmware/venus-v1.b00
-etc/firmware/venus-v1.b01
-etc/firmware/venus-v1.b02
-etc/firmware/venus-v1.b03
-etc/firmware/venus-v1.b04
-etc/firmware/venus-v1.mbn
-etc/firmware/venus-v1.mdt
+vendor/etc/firmware/venus.b00
+vendor/etc/firmware/venus.b01
+vendor/etc/firmware/venus.b02
+vendor/etc/firmware/venus.b03
+vendor/etc/firmware/venus.b04
+vendor/etc/firmware/venus.mbn
+vendor/etc/firmware/venus.mdt
+vendor/etc/firmware/venus-v1.b00
+vendor/etc/firmware/venus-v1.b01
+vendor/etc/firmware/venus-v1.b02
+vendor/etc/firmware/venus-v1.b03
+vendor/etc/firmware/venus-v1.b04
+vendor/etc/firmware/venus-v1.mbn
+vendor/etc/firmware/venus-v1.mdt
 
 # Widevine firmware
-etc/firmware/widevine.b00
-etc/firmware/widevine.b01
-etc/firmware/widevine.b02
-etc/firmware/widevine.b03
-etc/firmware/widevine.mdt
+vendor/etc/firmware/widevine.b00
+vendor/etc/firmware/widevine.b01
+vendor/etc/firmware/widevine.b02
+vendor/etc/firmware/widevine.b03
+vendor/etc/firmware/widevine.mdt
 
 # Wlan
-etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
-etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_nofem.bin
+vendor/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+vendor/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_nofem.bin
 
 # Haxx
 vendor/lib/libstlport_sta.so

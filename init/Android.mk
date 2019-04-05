@@ -12,4 +12,5 @@ LOCAL_SRC_FILES := init_s2.cpp
 
 LOCAL_MODULE := libinit_s2
 LOCAL_MODULE_TAGS := optional
+LOCAL_VENDOR_MODULE := true
 include $(BUILD_STATIC_LIBRARY)

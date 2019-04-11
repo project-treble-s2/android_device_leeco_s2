@@ -50,3 +50,10 @@ LOCAL_MODULE := fakelogprint
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 include $(BUILD_SHARED_LIBRARY)
+
+# treble
+include $(CLEAR_VARS)
+LOCAL_MODULE := configstore
+LOCAL_MODULE_TAGS := optional
+LOCAL_SRC_FILES := configstore/configstore.c
+include $(BUILD_SHARED_LIBRARY)

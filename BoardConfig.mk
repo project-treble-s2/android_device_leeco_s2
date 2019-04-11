@@ -245,8 +245,8 @@ TARGET_USES_OLD_MNC_FORMAT := true
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # Sepolicy
-include device/qcom/sepolicy-legacy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
@@ -254,7 +254,8 @@ TARGET_LD_SHIM_LIBS := \
    /vendor/bin/mm-qcamera-daemon|libshims_camera.so \
    /vendor/lib64/hw/gxfingerprint.default.so|fakelogprint.so \
    /vendor/lib64/hw/fingerprint.vendor.msm8952.so|fakelogprint.so \
-   /vendor/bin/gx_fpd|fakelogprint.so
+   /vendor/bin/gx_fpd|fakelogprint.so \
+   /vendor/bin/hw/android.hardware.configstore@1.1-service|configstore.so
 
 # Telephony
 TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true

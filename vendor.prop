@@ -30,6 +30,13 @@ vendor.voice.voip.conc.disabled=false
 vendor.voice.record.conc.disabled=false
 ro.af.client_heap_size_kbyte=7168
 ro.config.media_vol_steps=25
+persist.audio.calfile0=/vendor/etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
+persist.audio.calfile1=/vendor/etc/acdbdata/QRD/QRD_General_cal.acdb
+persist.audio.calfile2=/vendor/etc/acdbdata/QRD/QRD_Global_cal.acdb
+persist.audio.calfile3=/vendor/etc/acdbdata/QRD/QRD_Handset_cal.acdb
+persist.audio.calfile4=/vendor/etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
+persist.audio.calfile5=/vendor/etc/acdbdata/QRD/QRD_Headset_cal.acdb
+persist.audio.calfile6=/vendor/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
 
 # Property for AudioSphere Post Processing
 vendor.audio.pp.asphere.enabled=false
@@ -100,7 +107,7 @@ debug.egl.hw=1
 debug.enable.sglscale=1
 debug.mdpcomp.logs=0
 debug.cpurend.vsync=false
-debug.sf.disable_backpressure=1 
+debug.sf.disable_backpressure=1
 debug.sf.recomputecrop=0
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false

@@ -1,7 +1,7 @@
-<!-- 
-    This is a skeleton device manifest. Notes: 
+<!--
+    This is a skeleton device manifest. Notes:
     1. android.hidl.*, android.frameworks.*, android.system.* are not included.
-    2. If a HAL is supported in both hwbinder and passthrough transport, 
+    2. If a HAL is supported in both hwbinder and passthrough transport,
        only hwbinder is shown.
     3. It is likely that HALs in passthrough transport does not have
        <interface> declared; users will have to write them by hand.
@@ -70,7 +70,7 @@
     <hal format="hidl">
         <name>android.hardware.configstore</name>
         <transport>hwbinder</transport>
-        <version>1.1</version>
+        <version>1.0</version>
         <interface>
             <name>ISurfaceFlingerConfigs</name>
             <instance>default</instance>

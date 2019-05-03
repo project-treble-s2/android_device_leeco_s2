@@ -186,6 +186,9 @@ persist.vendor.radio.sw_mbn_update=0
 persist.data.qmi.adb_logmask=0
 persist.radio.aosp_usr_pref_sel=true
 
+# SurfaceFlinger
+ro.surface_flinger.protected_contents=true
+
 # TCP
 net.tcp.2g_init_rwnd=10
 

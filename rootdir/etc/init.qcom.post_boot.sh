@@ -68,7 +68,7 @@ echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
 echo 0 >  /sys/module/lowmemorykiller/parameters/lmk_fast_run
 echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
 echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
-echo 100 > /proc/sys/vm/swappiness
+echo 60 > /proc/sys/vm/swappiness
 echo 0 > /proc/sys/vm/page-cluster
 
 minfree_series=`cat /sys/module/lowmemorykiller/parameters/minfree`

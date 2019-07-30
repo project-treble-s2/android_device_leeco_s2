@@ -564,7 +564,8 @@ on property:persist.radio.multisim.config=dsds
 
 service charger /vendor/bin/charger
     class charger
-    group system graphics
+    user system
+    group system graphics input
     seclabel u:r:charger:s0
     writepid /dev/cpuset/system-background/tasks
 

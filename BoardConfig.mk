@@ -38,7 +38,10 @@ TARGET_2ND_CPU_VARIANT := cortex-a53.a57
 
 TARGET_CPU_CORTEX_A53 := true
 
+TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
+
+ENABLE_CPUSETS := true
 
 # Bootloader
 TARGET_NO_BOOTLOADER := true
@@ -135,11 +138,15 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
 	/vendor/bin/mm-qcamera-daemon=23
 
 # Display
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+TARGET_USES_AOSP_WFD := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
+USE_OPENGL_RENDERER := true
+USE_PREFERRED_CAMERA_FORMAT := true
 TARGET_USES_OVERLAY := true
 TARGET_USES_GRALLOC1 := true
 TARGET_USES_NEW_ION_API :=true
@@ -193,6 +200,8 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 # HIDL
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vendor_framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
@@ -246,7 +255,10 @@ TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # Sepolicy
 include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_VERS := 28.0
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SELINUX_IGNORE_NEVERALLOWS := true
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
@@ -255,7 +267,6 @@ TARGET_LD_SHIM_LIBS := \
    /vendor/lib64/hw/gxfingerprint.default.so|fakelogprint.so \
    /vendor/lib64/hw/fingerprint.vendor.msm8952.so|fakelogprint.so \
    /vendor/bin/gx_fpd|fakelogprint.so \
-   /vendor/bin/hw/android.hardware.configstore@1.1-service|configstore.so
 
 # Telephony
 TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true

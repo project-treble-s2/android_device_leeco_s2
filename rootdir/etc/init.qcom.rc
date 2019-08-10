@@ -349,7 +349,7 @@ on post-fs-data
     mkdir /data/data/media 0770 media media
 
     #Create folder for mm-qcamera-daemon
-    mkdir /data/camera 0770 media camera
+    mkdir /data/misc/camera 0770 camera camera
 
     #Create PERFD deamon related dirs
     mkdir /data/vendor/perfd 0770 root system
@@ -434,7 +434,7 @@ service vendor.cnd /vendor/bin/cnd
     group system wifi inet radio wakelock net_admin
     writepid /dev/cpuset/system-background/tasks
 
-service vendor.dpmQmiMgr vendor/bin/dpmQmiMgr
+service vendor.dpmQmiMgr /vendor/bin/dpmQmiMgr
     class main
     user system
     group radio system
@@ -577,14 +577,14 @@ service charger /vendor/bin/charger
     seclabel u:r:healthd:s0
     writepid /dev/cpuset/system-background/tasks
 
-service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
+service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
     class core
     user root
     group root
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service vendor.msm_irqbal_lb /vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance_little_big.conf
+service vendor.msm_irqbal_lb /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance_little_big.conf
     class core
     user root
     group root
@@ -594,7 +594,7 @@ service vendor.msm_irqbal_lb /vendor/bin/msm_irqbalance -f /system/vendor/etc/ms
 on property:init.svc.surfaceflinger=restarting
     restart vendor.hwcomposer-2-1
 
-service vendor.time_daemon /system/vendor/bin/time_daemon
+service vendor.time_daemon /vendor/bin/time_daemon
     class main
     user root
     group root

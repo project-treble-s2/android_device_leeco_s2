@@ -14,4 +14,4 @@ allow goodix firmware_file:dir { r_dir_perms };
 binder_call(goodix, servicemanager);
 binder_call(goodix, hal_fingerprint_default);
 
-add_service(goodix, goodix_service);
+#add_service(goodix, goodix_service);

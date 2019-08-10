@@ -11,7 +11,7 @@
        is removed from the manifest file and written by assemble_vintf
        at build time.
 -->
-<manifest version="1.0" type="device" target-level="1">>
+<manifest version="1.0" type="device" target-level="2">>
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -50,7 +50,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.camera.provider</name>
-        <transport>hwbinder</transport>
+        <transport arch="32+64">passthrough</transport>
         <version>2.4</version>
         <interface>
             <name>ICameraProvider</name>
@@ -70,7 +70,7 @@
     <hal format="hidl">
         <name>android.hardware.configstore</name>
         <transport>hwbinder</transport>
-        <version>1.0</version>
+        <version>1.1</version>
         <interface>
             <name>ISurfaceFlingerConfigs</name>
             <instance>default</instance>
@@ -84,11 +84,13 @@
             <name>ICryptoFactory</name>
             <instance>clearkey</instance>
             <instance>default</instance>
+            <instance>widevine</instance>
         </interface>
         <interface>
             <name>IDrmFactory</name>
             <instance>clearkey</instance>
             <instance>default</instance>
+            <instance>widevine</instance>
         </interface>
         <fqname>@1.1::ICryptoFactory/clearkey</fqname>
         <fqname>@1.1::IDrmFactory/clearkey</fqname>
@@ -126,7 +128,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.graphics.composer</name>
-        <transport>hwbinder</transport>
+        <transport arch="32+64">passthrough</transport>
         <version>2.1</version>
         <interface>
             <name>IComposer</name>
@@ -148,6 +150,7 @@
         <version>2.0</version>
         <interface>
             <name>IHealth</name>
+            <instance>backup</instance>
             <instance>default</instance>
         </interface>
     </hal>
@@ -543,4 +546,7 @@
             <instance>imsrtpservice</instance>
         </interface>
     </hal>
+    <sepolicy>
+        <version>28.0</version>
+    </sepolicy>
 </manifest>

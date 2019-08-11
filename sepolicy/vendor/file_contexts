@@ -4,7 +4,7 @@
 /(vendor|system/vendor|system)/bin/gx_fpd                   u:object_r:goodix_exec:s0
 
 # Fingerprint
-/system/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.0-service-custom u:object_r:hal_fingerprint_default_exec:s0
+/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.0-service-custom u:object_r:hal_fingerprint_default_exec:s0
 
 # Camera
 /data/vendor/qcam(/.*)?                                     u:object_r:vendor_camera_data_file:s0
@@ -20,9 +20,9 @@
 
 # Legacy (TODO: move to vendor)
 /sbin/qfipsverify                                           u:object_r:sectest_exec:s0
-/system/bin/ipacm                                           u:object_r:ipacm_exec:s0
-/system/bin/ipacm-diag                                      u:object_r:ipacm-diag_exec:s0
-/system/bin/mm-qcamera-daemon                               u:object_r:mm-qcamerad_exec:s0
+/vendor/bin/ipacm                                           u:object_r:ipacm_exec:s0
+/vendor/bin/ipacm-diag                                      u:object_r:ipacm-diag_exec:s0
+/vendor/bin/mm-qcamera-daemon                               u:object_r:mm-qcamerad_exec:s0
 /data/misc/location/xtra/socket_xtra                        u:object_r:location_socket:s0
 /data/misc/location/xtra/socket_hal_xtra                    u:object_r:location_socket:s0
 

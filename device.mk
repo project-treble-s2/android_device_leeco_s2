@@ -98,7 +98,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio.primary.msm8952 \
     audio.a2dp.default \
-    audio_amplifier.msm8952 \
     audio.r_submix.default \
     audio.usb.default
 

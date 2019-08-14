@@ -225,13 +225,13 @@ const QCamera3HardwareInterface::QCameraMap<
     { ANDROID_LENS_STATE_MOVING,        CAM_AF_LENS_STATE_MOVING}
 };
 
-const int32_t available_thumbnail_sizes[] = {176, 144,
+const int32_t available_thumbnail_sizes[] = {0, 0,
+                                             176, 144,
                                              320, 240,
                                              432, 288,
                                              480, 288,
                                              512, 288,
-                                             512, 384,
-                                               0, 0  };
+                                             512, 384};
 
 const QCamera3HardwareInterface::QCameraMap<
         camera_metadata_enum_android_sensor_test_pattern_mode_t,
@@ -810,14 +810,26 @@ int QCamera3HardwareInterface::validateStreamDimensions(
             }
             break;
         } /* End of switch(newStream->format) */
-
-        /* We error out even if a single stream has unsupported size set */
-        if (!sizeFound) {
-            ALOGE("%s: Error: Unsupported size of %d x %d requested for stream type:%d",
-                    __func__, newStream->width, newStream->height, newStream->format);
-            rc = -EINVAL;
-            break;
-        }
+		
+		/*
+		@nullbytepl patch:
+		Allow 2160p streams, even though we aren't advertising it
+		
+		Original patch by @anubioz, improved by @nullbytepl
+		*/
+		if ((int32_t)newStream->width == 3840 && (int32_t)newStream->height == 2160){
+			sizeFound = true;
+		} else {
+			/* We error out even if a single stream has unsupported size set */
+			if (!sizeFound) {
+				ALOGE("%s: Error: Unsupported size of %d x %d requested for stream type:%d",
+						__func__, newStream->width, newStream->height, newStream->format);
+				rc = -EINVAL;
+				break;
+			}
+		}
+		
+        
     } /* End of for each stream */
     return rc;
 }
@@ -4194,6 +4206,9 @@ QCamera3HardwareInterface::translateFromHalMetadata(
          camMetadata.update(ANDROID_CONTROL_MODE, &fwk_mode, 1);
     }
 
+    /* Constant metadata values to be update*/
+    uint8_t hotPixelModeFast = ANDROID_HOT_PIXEL_MODE_FAST;
+    camMetadata.update(ANDROID_HOT_PIXEL_MODE, &hotPixelModeFast, 1);
 
     uint8_t hotPixelMapMode = ANDROID_STATISTICS_HOT_PIXEL_MAP_MODE_OFF;
     camMetadata.update(ANDROID_STATISTICS_HOT_PIXEL_MAP_MODE, &hotPixelMapMode, 1);
@@ -5132,6 +5147,51 @@ cam_dimension_t QCamera3HardwareInterface::calcMaxJpegDim()
     return max_jpeg_dim;
 }
 
+/*===========================================================================
+ * FUNCTION   : patchCaps
+ *
+ * DESCRIPTION: patch some camera capabilities
+ *==========================================================================*/
+void QCamera3HardwareInterface::patchCaps()
+{
+	ALOGI("patchCaps(): Dumping Camera 0: ");
+	ALOGI("patchCaps(): ->picture_sizes_tbl: ");
+	for (int i = gCamCapability[0]->picture_sizes_tbl_cnt - 1; i >= 0; i--)
+	{
+		ALOGI("patchCaps(): %d: %dx%d %d", i, gCamCapability[0]->picture_sizes_tbl[i].width, gCamCapability[0]->picture_sizes_tbl[i].height, (int)(gCamCapability[0]->picture_min_duration[i]/1000000));
+	}
+
+	ALOGI("patchCaps(): ->fps_ranges_tbl: ");
+	for (int i = gCamCapability[0]->fps_ranges_tbl_cnt - 1; i >= 0; i--)
+	{
+		ALOGI("patchCaps(): %d: min %f | max %f", i, gCamCapability[0]->fps_ranges_tbl[i].min_fps, gCamCapability[0]->fps_ranges_tbl[i].max_fps);
+	}
+
+	ALOGI("patchCaps(): ->preview_sizes_tbl: ");
+	for (int i = gCamCapability[0]->preview_sizes_tbl_cnt - 1; i >= 0; i--)
+	{
+		ALOGI("patchCaps(): %d: %dx%d", i, gCamCapability[0]->preview_sizes_tbl[i].width, gCamCapability[0]->preview_sizes_tbl[i].height);
+	}
+
+	ALOGI("patchCaps(): ->video_sizes_tbl: ");
+	for (int i = gCamCapability[0]->video_sizes_tbl_cnt - 1; i >= 0; i--)
+	{
+		ALOGI("patchCaps(): %d: %dx%d", i, gCamCapability[0]->video_sizes_tbl[i].width, gCamCapability[0]->video_sizes_tbl[i].height);
+	}
+
+	ALOGI("patchCaps(): ->hfr_tbl: ");
+	for (int i = gCamCapability[0]->hfr_tbl_cnt - 1; i >= 0; i--)
+	{
+		ALOGI("patchCaps(): %d: %dx%d mode %d", i, gCamCapability[0]->hfr_tbl[i].dim.width, gCamCapability[0]->hfr_tbl[i].dim.height, gCamCapability[0]->hfr_tbl[i].mode);
+	}
+
+	ALOGI("patchCaps(): ->sensitivity_range: min %d max %d", gCamCapability[0]->sensitivity_range.min_sensitivity, gCamCapability[0]->sensitivity_range.max_sensitivity);
+
+	ALOGI("patchCaps(): ->exposure_time_range: min %d max %d", (int)(gCamCapability[0]->exposure_time_range[0]/1000000), (int)(gCamCapability[0]->exposure_time_range[1]/1000000));
+
+	gCamCapability[0]->picture_min_duration[0] = 33333000; // Set 4608x3456 fps (33.333 ms, ~30 fps)
+	gCamCapability[0]->picture_min_duration[2] = 33333000; // Set 3456x3456 fps (33.333 ms, ~30 fps)
+}
 
 /*===========================================================================
  * FUNCTION   : initStaticMetadata
@@ -5152,6 +5212,7 @@ int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
     size_t count = 0;
     bool limitedDevice = false;
     int64_t m_MinDurationBoundNs = 50000000; // 50 ms, 20 fps
+    patchCaps(); // @nullbytepl patch: run various CamCapability releated fixes
     /* If sensor is YUV sensor (no raw support) or if per-frame control is not
      * guaranteed or if min fps of max resolution is less than 20 fps, its
      * advertised as limited device*/
@@ -6423,9 +6484,6 @@ camera_metadata_t* QCamera3HardwareInterface::translateCapabilityToMetadata(int 
     uint8_t vsMode;
     uint8_t optStabMode;
     uint8_t cacMode;
-    uint8_t hotpixelMode = ANDROID_HOT_PIXEL_MODE_FAST;
-    uint8_t shadingmode = ANDROID_SHADING_MODE_FAST;
-    uint8_t shadingmap_mode = ANDROID_STATISTICS_LENS_SHADING_MAP_MODE_OFF;
     bool highQualityModeEntryAvailable = FALSE;
     bool fastModeEntryAvailable = FALSE;
     uint8_t edge_mode = ANDROID_EDGE_MODE_FAST;
@@ -6442,11 +6500,6 @@ camera_metadata_t* QCamera3HardwareInterface::translateCapabilityToMetadata(int 
         controlIntent = ANDROID_CONTROL_CAPTURE_INTENT_STILL_CAPTURE;
         focusMode = ANDROID_CONTROL_AF_MODE_CONTINUOUS_PICTURE;
         optStabMode = ANDROID_LENS_OPTICAL_STABILIZATION_MODE_ON;
-        hotpixelMode = ANDROID_HOT_PIXEL_MODE_HIGH_QUALITY;
-        shadingmode = ANDROID_SHADING_MODE_HIGH_QUALITY;
-        if (CAM_SENSOR_RAW == gCamCapability[mCameraId]->sensor_type.sens_type) {
-            shadingmap_mode = ANDROID_STATISTICS_LENS_SHADING_MAP_MODE_ON;
-        }
         cacMode = ANDROID_COLOR_CORRECTION_ABERRATION_MODE_OFF;
         // Order of priority for default CAC is HIGH Quality -> FAST -> OFF
         for (size_t i = 0; i < gCamCapability[mCameraId]->aberration_modes_count; i++) {
@@ -6566,8 +6619,8 @@ camera_metadata_t* QCamera3HardwareInterface::translateCapabilityToMetadata(int 
     static const uint8_t demosaicMode = ANDROID_DEMOSAIC_MODE_FAST;
     settings.update(ANDROID_DEMOSAIC_MODE, &demosaicMode, 1);
 
+    static const uint8_t hotpixelMode = ANDROID_HOT_PIXEL_MODE_FAST;
     settings.update(ANDROID_HOT_PIXEL_MODE, &hotpixelMode, 1);
-    settings.update(ANDROID_SHADING_MODE, &shadingmode, 1);
 
     static const int32_t testpatternMode = ANDROID_SENSOR_TEST_PATTERN_MODE_OFF;
     settings.update(ANDROID_SENSOR_TEST_PATTERN_MODE, &testpatternMode, 1);
@@ -6693,6 +6746,11 @@ camera_metadata_t* QCamera3HardwareInterface::translateCapabilityToMetadata(int 
     uint8_t facedetect_mode = ANDROID_STATISTICS_FACE_DETECT_MODE_OFF;
     settings.update(ANDROID_STATISTICS_FACE_DETECT_MODE, &facedetect_mode, 1);
 
+    /* lens shading map mode */
+    uint8_t shadingmap_mode = ANDROID_STATISTICS_LENS_SHADING_MAP_MODE_OFF;
+    if (CAM_SENSOR_RAW == gCamCapability[mCameraId]->sensor_type.sens_type) {
+        shadingmap_mode = ANDROID_STATISTICS_LENS_SHADING_MAP_MODE_ON;
+    }
     settings.update(ANDROID_STATISTICS_LENS_SHADING_MAP_MODE, &shadingmap_mode, 1);
 
     //special defaults for manual template

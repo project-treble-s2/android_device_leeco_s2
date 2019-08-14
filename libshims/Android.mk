@@ -28,7 +28,8 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
     bionic/bionic_time_conversions.cpp \
-    bionic/pthread_cond.cpp
+    bionic/pthread_cond.cpp \
+    bionic/shims.c
 
 LOCAL_SHARED_LIBRARIES := libc
 
@@ -52,4 +53,3 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 include $(BUILD_SHARED_LIBRARY)
-

@@ -442,6 +442,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vndk-sp
 
+# Properties
+include $(LOCAL_PATH)/vendor_prop.mk
+
 # SDcard
 PRODUCT_CHARACTERISTICS := nosdcard
 

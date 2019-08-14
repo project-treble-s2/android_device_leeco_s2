@@ -49,7 +49,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8952
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci earlyprintk loop.max_part=7
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x00000100
@@ -135,7 +135,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI
 
 # Camera
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
-	/vendor/bin/mm-qBcamera-daemon=23
+	/vendor/bin/mm-qcamera-daemon=23
 
 # Display
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
@@ -262,7 +262,7 @@ TARGET_LD_SHIM_LIBS := \
    /vendor/bin/mm-qcamera-daemon|libshims_camera.so \
    /vendor/lib64/hw/gxfingerprint.default.so|fakelogprint.so \
    /vendor/lib64/hw/fingerprint.vendor.msm8952.so|fakelogprint.so \
-   /vendor/bin/gx_fpd|fakelogprint.so \
+   /vendor/bin/gx_fpd|fakelogprint.so
 
 # Telephony
 TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true

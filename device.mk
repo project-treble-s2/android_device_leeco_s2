@@ -444,12 +444,14 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
-# VNDK-SP:
+# VNDK
+# Update this list with what each blob is actually for
+# libicuuc: vendor.qti.hardware.qteeconnector@1.0-impl
+# libstdc++: camera.msm8952
 PRODUCT_PACKAGES += \
-    vndk-sp
-
-# Properties
-include $(LOCAL_PATH)/vendor_prop.mk
+    libicuuc.vendor \
+    libstdc++.vendor \
+    vndk_package
 
 # SDcard
 PRODUCT_CHARACTERISTICS := nosdcard

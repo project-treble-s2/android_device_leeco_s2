@@ -218,6 +218,3 @@ ro.audio.flinger_standbytime_ms=300
 #UI efficiency props
 ro.min.fling_velocity=160
 ro.max.fling_velocity=20000
-
-#VNDK
-ro.vndk.version=28

@@ -5210,6 +5210,16 @@ void QCamera3HardwareInterface::patchCaps()
  *==========================================================================*/
 int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
 {
+	if(!gCamCapability[cameraId]->picture_sizes_tbl_cnt){
+		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt is null! Return NO_ERROR code and allow it to properly initalize");
+		return NO_ERROR;
+		
+	}
+	if(gCamCapability[cameraId]->picture_sizes_tbl_cnt < 5){ // In theory it should always == 13, but lets set it to under 5 for security
+		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt equals %d! Return NO_ERROR code and allow it to properly initalize", (int) gCamCapability[cameraId]->picture_sizes_tbl_cnt);
+		return NO_ERROR;
+	}
+	
     int rc = 0;
     CameraMetadata staticInfo;
     size_t count = 0;

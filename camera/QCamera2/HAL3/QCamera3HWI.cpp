@@ -5211,13 +5211,13 @@ void QCamera3HardwareInterface::patchCaps(uint32_t cameraId)
 int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
 {
 	if(!gCamCapability[cameraId]->picture_sizes_tbl_cnt){
-		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt is null! Return NO_ERROR code and allow it to properly initalize");
-		return NO_ERROR;
+		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt is null! Return 123 code and allow it to properly initalize (cameraId=%d)", (int) cameraId);
+		return 123;
 		
 	}
 	if(gCamCapability[cameraId]->picture_sizes_tbl_cnt < 5){ // In theory it should always == 13, but lets set it to under 5 for security
-		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt equals %d! Return NO_ERROR code and allow it to properly initalize", (int) gCamCapability[cameraId]->picture_sizes_tbl_cnt);
-		return NO_ERROR;
+		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt equals %d! Return 123 code and allow it to properly initalize (cameraId=%d)", (int) gCamCapability[cameraId]->picture_sizes_tbl_cnt, (int) cameraId);
+		return 123;
 	}
 	
     int rc = 0;
@@ -6420,6 +6420,9 @@ int QCamera3HardwareInterface::getCamInfo(uint32_t cameraId,
             pthread_mutex_unlock(&gCamLock);
             return rc;
         }
+		if (rc == 123) {
+			ALOGI("%s: rc is 123! :%d", __func__, cameraId);
+		}
     }
 
     switch(gCamCapability[cameraId]->position) {

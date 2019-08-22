@@ -52,6 +52,8 @@ pthread_mutex_t gCamLock = PTHREAD_MUTEX_INITIALIZER;
 //This variable updation is protected by gCamLock.
 uint8_t gNumCameraSessions = 0;
 
+bool isReady = false;
+
 volatile uint32_t gKpiDebugLevel = 1;
 
 /*===========================================================================
@@ -109,7 +111,9 @@ QCamera2Factory::QCamera2Factory()
                 //Query camera at this point in order
                 //to avoid any delays during subsequent
                 //calls to 'getCameraInfo()'
-                getCameraInfo(i, &info);
+                if (getCameraInfo(i, &info) == 0) {
+					isReady = true;
+				}
             }
         } else {
             ALOGE("%s: Not enough resources to allocate HAL descriptor table!",
@@ -167,7 +171,11 @@ int QCamera2Factory::get_number_of_cameras()
         numCameras = gQCamera2Factory->getNumberOfCameras();
 
     CDBG_HIGH("%s: num of cameras: %d", __func__, numCameras);
-    return numCameras;
+	if (!isReady) {
+		return -123;
+	} else {
+		return numCameras;
+	}
 }
 
 /*===========================================================================

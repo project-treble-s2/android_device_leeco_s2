@@ -53,3 +53,17 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 include $(BUILD_SHARED_LIBRARY)
+
+# goodix stuff for q
+include $(CLEAR_VARS)
+
+LOCAL_SHARED_LIBRARIES := \
+    libkeystore_binder
+
+LOCAL_SRC_FILES := goodix/goodix.cpp
+
+LOCAL_MODULE := goodixfix
+LOCAL_MODULE_TAGS := optional
+LOCAL_VENDOR_MODULE := true
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+include $(BUILD_SHARED_LIBRARY)

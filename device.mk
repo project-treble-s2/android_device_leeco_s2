@@ -193,6 +193,10 @@ PRODUCT_COPY_FILES += \
 # Fake logprint for fingerprint libs
 PRODUCT_PACKAGES += \
     fakelogprint
+	
+# Goodix fix for Q
+PRODUCT_PACKAGES += \
+    goodixfix
 
 # Fingerprint
 PRODUCT_PACKAGES += \

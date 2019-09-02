@@ -266,7 +266,8 @@ TARGET_LD_SHIM_LIBS := \
    /vendor/bin/mm-qcamera-daemon|libshims_camera.so \
    /vendor/lib64/hw/gxfingerprint.default.so|fakelogprint.so \
    /vendor/lib64/hw/fingerprint.vendor.msm8952.so|fakelogprint.so \
-   /vendor/bin/gx_fpd|fakelogprint.so
+   /vendor/bin/gx_fpd|fakelogprint.so \
+   /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.leeco_s2|goodixfix.so
 
 # Telephony
 TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true

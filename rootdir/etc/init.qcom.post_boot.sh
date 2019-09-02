@@ -41,7 +41,6 @@ echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
 echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
 echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
 echo 60 > /proc/sys/vm/swappiness
-echo 0 > /proc/sys/vm/page-cluster
 
 panel=`cat /sys/class/graphics/fb0/modes`
 if [ "${panel:5:1}" == "x" ]; then

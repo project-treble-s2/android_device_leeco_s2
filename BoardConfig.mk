@@ -46,6 +46,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8952
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci earlyprintk loop.max_part=7
+BOARD_KERNEL_CMDLINE += skip_initramfs rootwait ro init=/init root=/dev/dm-0 dm=\"system none ro,0 1 android-verity /dev/mmcblk0p27\"
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -242,6 +243,9 @@ TARGET_LD_SHIM_LIBS := \
    /system/lib64/hw/gxfingerprint.default.so|fakelogprint.so \
    /system/lib64/hw/fingerprint.vendor.msm8952.so|fakelogprint.so \
    /system/bin/gx_fpd|fakelogprint.so
+
+# System As Root
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 
 # Telephony
 TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true

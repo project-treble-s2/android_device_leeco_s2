@@ -564,7 +564,7 @@ vendor/lib/libtime_genoff.so|24f6064818bc53c5ea17a3608766e3cc1e889f64
 vendor/lib64/libtime_genoff.so|8f4c1f9ace6af463b241b130d6872b5d39cc7b2a
 
 # Widevine - from daisy - PKQ1.180917.001.V10.0.1.0.PDLMIFJ
-vendor/bin/hw/android.hardware.drm@1.1-service.widevine|9743c4ecd0fb8773795bcbfbb406f25616c04129
+vendor/bin/hw/android.hardware.drm@1.2-service.widevine|5c2f83943a1c8680cde657e22425f665ab438714
 vendor/bin/move_widevine_data.sh|ef619bc7798f9e3101888d73b7dda4877d69fb46
-vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc|458dd241f5f8536eccb57f012b3eba0061736e8e
-vendor/lib64/libwvhidl.so|a3444ac0deb8144a08ba2ed1dad2f2369096c7af
+vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc|f69c3e3c5d26e68e242b4b3909fb57dd680b3a62
+vendor/lib64/libwvhidl.so|ff967a2aab27d75eb858c6a7a269d4090af9f377

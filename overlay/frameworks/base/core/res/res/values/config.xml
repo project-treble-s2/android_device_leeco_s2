@@ -444,8 +444,6 @@
         <item>"/system/framework/services.jar"</item>
         <item>"/system/framework/arm64/boot.oat"</item>
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
-        <item>"/system/framework/boot-QPerformance.vdex"</item>
-        <item>"/system/framework/boot-UxPerformance.vdex"</item>
         <item>"/system/lib64/libsurfaceflinger.so"</item>
         <item>"/apex/com.android.runtime/javalib/core-oj.jar"</item>
         <item>"/apex/com.android.runtime/javalib/core-libart.jar"</item>

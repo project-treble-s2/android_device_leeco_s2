@@ -15,6 +15,9 @@
 # Radio
 /data/misc/radio/qcril.db                                   u:object_r:nv_data_file:s0
 
+# non-hlos mount points
+/firmware                                                  u:object_r:firmware_file:s0
+
 # Shell scripts
 /(vendor|system/vendor)/bin/init\.uei\.sh                   u:object_r:init_uei_exec:s0
 

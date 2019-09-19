@@ -82,7 +82,6 @@ persist.sys.le_fast_chrg_enable=1
 
 # Fingerprint
 persist.qfp=false
-ro.fingerprint.cleanup.unused=false
 
 #Fm
 ro.fm.transmitter=false

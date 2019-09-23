@@ -21,23 +21,23 @@ vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
 
 # Audio libraries
 vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
+vendor/lib/libacdbloader.so|52fb25441a742d744f6574d1065ae1b822769c48
 vendor/lib/libacdbmapper.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libadm.so
-vendor/lib/libaudcal.so
+vendor/lib/libaudcal.so|5a6b0fa75e274b07f2dabdcc7381879e1a59898c
 vendor/lib/libaudioalsa.so
 vendor/lib/libhwdaphal.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 vendor/lib64/libacdb-fts.so
-vendor/lib64/libacdbloader.so
+vendor/lib64/libacdbloader.so|2ecf30ba0171aab7fdc720446238d48048cf6b7e
 vendor/lib64/libacdbmapper.so
 vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
-vendor/lib64/libaudcal.so
+vendor/lib64/libaudcal.so|96c43cbe0ac304ea128def709d7f3ea99db7f260
 vendor/lib64/libaudioalsa.so
 vendor/lib64/libhwdaphal.so
 vendor/lib64/soundfx/libqcbassboost.so

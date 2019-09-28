@@ -28,12 +28,12 @@
 
 namespace android {
 
-FingerprintDaemonProxy* FingerprintDaemonProxy::sInstance = NULL;
+FingerprintDaemonProxy* FingerprintDaemonProxy::sInstance = nullptr;
 
 // Supported fingerprint HAL version
 static const uint16_t kVersion = HARDWARE_MODULE_API_VERSION(2, 0);
 
-FingerprintDaemonProxy::FingerprintDaemonProxy() : mModule(NULL), mDevice(NULL), mCallback(NULL) {
+FingerprintDaemonProxy::FingerprintDaemonProxy() : mModule(nullptr), mDevice(nullptr), mCallback(nullptr) {
 
 }
 
@@ -44,7 +44,7 @@ FingerprintDaemonProxy::~FingerprintDaemonProxy() {
 void FingerprintDaemonProxy::hal_notify_callback(const fingerprint_msg_t *msg) {
     FingerprintDaemonProxy* instance = FingerprintDaemonProxy::getInstance();
     const sp<IFingerprintDaemonCallback> callback = instance->mCallback;
-    if (callback == NULL) {
+    if (callback == nullptr) {
         ALOGE("Invalid callback object");
         return;
     }
@@ -89,12 +89,12 @@ void FingerprintDaemonProxy::hal_notify_callback(const fingerprint_msg_t *msg) {
 }
 
 void FingerprintDaemonProxy::notifyKeystore(const uint8_t *auth_token, const size_t auth_token_length) {
-    if (auth_token != NULL && auth_token_length > 0) {
+    if (auth_token != nullptr && auth_token_length > 0) {
         // TODO: cache service?
         sp < IServiceManager > sm = defaultServiceManager();
         sp < IBinder > binder = sm->getService(String16("android.security.keystore"));
         sp < android::security::keystore::IKeystoreService > service = interface_cast < android::security::keystore::IKeystoreService > (binder);
-        if (service != NULL) {
+        if (service != nullptr) {
             int result =0;
             std::vector<uint8_t> auth_token_vector(*auth_token, (*auth_token) + auth_token_length);
             auto binder_result = service->addAuthToken(auth_token_vector, &result);
@@ -108,7 +108,7 @@ void FingerprintDaemonProxy::notifyKeystore(const uint8_t *auth_token, const siz
 }
 
 void FingerprintDaemonProxy::init(const sp<IFingerprintDaemonCallback>& callback) {
-    if (mCallback != NULL && IInterface::asBinder(callback) != IInterface::asBinder(mCallback)) {
+    if (mCallback != nullptr && IInterface::asBinder(callback) != IInterface::asBinder(mCallback)) {
         IInterface::asBinder(mCallback)->unlinkToDeath(this);
     }
     IInterface::asBinder(callback)->linkToDeath(this);
@@ -177,27 +177,27 @@ int32_t FingerprintDaemonProxy::setActiveGroup(int32_t groupId, const uint8_t* p
 
 int64_t FingerprintDaemonProxy::openHal() {
     int err;
-    const hw_module_t *hw_module = NULL;
+    const hw_module_t *hw_module = nullptr;
 
     if (0 != (err = hw_get_module(FINGERPRINT_HARDWARE_MODULE_ID, &hw_module))) {
         ALOGE("Can't open fingerprint HW Module, error: %d", err);
         return 0;
     }
-    if (NULL == hw_module) {
+    if (nullptr == hw_module) {
         ALOGE("No valid fingerprint module");
         return 0;
     }
 
     mModule = reinterpret_cast<const fingerprint_module_t*>(hw_module);
 
-    if (mModule->common.methods->open == NULL) {
+    if (mModule->common.methods->open == nullptr) {
         ALOGE("No valid open method");
         return 0;
     }
 
-    hw_device_t *device = NULL;
+    hw_device_t *device = nullptr;
 
-    if (0 != (err = mModule->common.methods->open(hw_module, NULL, &device))) {
+    if (0 != (err = mModule->common.methods->open(hw_module, nullptr, &device))) {
         ALOGE("Can't open fingerprint methods, error: %d", err);
         return 0;
     }
@@ -224,7 +224,7 @@ int64_t FingerprintDaemonProxy::openHal() {
 }
 
 int32_t FingerprintDaemonProxy::closeHal() {
-    if (mDevice == NULL) {
+    if (mDevice == nullptr) {
         ALOGE("No valid device");
         return -ENOSYS;
     }
@@ -233,7 +233,7 @@ int32_t FingerprintDaemonProxy::closeHal() {
         ALOGE("Can't close fingerprint module, error: %d", err);
         return err;
     }
-    mDevice = NULL;
+    mDevice = nullptr;
     return 0;
 }
 
@@ -243,7 +243,7 @@ void FingerprintDaemonProxy::binderDied(const wp<IBinder>& who) {
         ALOGE("Can't close fingerprint device, error: %d", err);
     }
     if (IInterface::asBinder(mCallback) == who) {
-        mCallback = NULL;
+        mCallback = nullptr;
     }
 }
 

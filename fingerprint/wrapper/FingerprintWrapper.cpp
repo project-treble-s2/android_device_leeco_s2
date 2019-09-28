@@ -46,14 +46,14 @@ static bool ensure_vendor_module_is_loaded(void)
         int rv = hw_get_module_by_class("fingerprint", "vendor", &vendor.hw_module);
         if (rv) {
             ALOGE("failed to open vendor module, error %d", rv);
-            vendor.module = NULL;
+            vendor.module = nullptr;
         } else {
             ALOGI("loaded vendor module: %s version %x", vendor.module->common.name,
                 vendor.module->common.module_api_version);
         }
     }
 
-    return vendor.module != NULL;
+    return vendor.module != nullptr;
 }
 
 static int set_notify(struct fingerprint_device *dev, fingerprint_notify_t notify)
@@ -223,7 +223,7 @@ fingerprint_module_t HAL_MODULE_INFO_SYM = {
         .name = "Lineage Fingerprint Wrapper",
         .author = "The LineageOS Project",
         .methods = &module_methods,
-        .dso = NULL, /* remove compilation warnings */
+        .dso = nullptr, /* remove compilation warnings */
         .reserved = {0}, /* remove compilation warnings */
     },
 };

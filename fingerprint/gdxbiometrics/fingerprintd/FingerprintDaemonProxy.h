@@ -25,7 +25,7 @@ namespace android {
 class FingerprintDaemonProxy : public BnFingerprintDaemon {
     public:
         static FingerprintDaemonProxy* getInstance() {
-            if (sInstance == NULL) {
+            if (sInstance == nullptr) {
                 sInstance = new FingerprintDaemonProxy();
             }
             return sInstance;

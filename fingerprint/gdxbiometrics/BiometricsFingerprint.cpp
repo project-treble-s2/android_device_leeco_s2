@@ -46,7 +46,7 @@ BiometricsFingerprint *BiometricsFingerprint::sInstance = nullptr;
 BiometricsFingerprint::BiometricsFingerprint() : mClientCallback(nullptr), mDevice(nullptr) {
     sInstance = this; // keep track of the most recent instance
     char vend [PROPERTY_VALUE_MAX];
-    property_get("ro.boot.fpsensor", vend, NULL);
+    property_get("ro.boot.fpsensor", vend, nullptr);
 
     if (!strcmp(vend, "fpc")) {
         is_goodix = false;

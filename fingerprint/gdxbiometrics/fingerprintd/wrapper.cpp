@@ -28,7 +28,7 @@
 
 using namespace android;
 
-sp<IFingerprintDaemon> g_service = NULL;
+sp<IFingerprintDaemon> g_service = nullptr;
 
 fingerprint_device_t* getWrapperService();
 
@@ -36,7 +36,7 @@ class BinderDiednotify: public IBinder::DeathRecipient {
     public:
         void binderDied(const wp<IBinder> __unused &who) {
             ALOGE("binderDied");
-            g_service = NULL;
+            g_service = nullptr;
         }
 };
 
@@ -45,20 +45,20 @@ static sp<BinderDiednotify> gDeathRecipient = new BinderDiednotify();
 fingerprint_device_t* getWrapperService(fingerprint_notify_t notify) {
     int64_t ret = 0;
     do {
-        if (g_service == NULL) {
+        if (g_service == nullptr) {
             ALOGE("getService g_servie is NULL");
 
             sp<IServiceManager> sm = defaultServiceManager();
             sp<IBinder> binder = sm->getService(android::FingerprintDaemonProxy::descriptor);
-            if (binder == NULL) {
+            if (binder == nullptr) {
                 ALOGE("getService failed");
                 sleep(1);
                 continue;
             }
             g_service = interface_cast<IFingerprintDaemon>(binder);
-            binder->linkToDeath(gDeathRecipient, NULL, 0);
+            binder->linkToDeath(gDeathRecipient, nullptr, 0);
 
-            if (g_service != NULL) {
+            if (g_service != nullptr) {
                 ALOGE("getService succeed");
                 sp<android::FingerprintDaemonCallbackProxy> callback =
                         new FingerprintDaemonCallbackProxy();
@@ -68,7 +68,7 @@ fingerprint_device_t* getWrapperService(fingerprint_notify_t notify) {
                 ret = g_service->openHal();
                 if (ret == 0) {
                     ALOGE("getService openHal failed!");
-                    g_service = NULL;
+                    g_service = nullptr;
                 }
             }
         }

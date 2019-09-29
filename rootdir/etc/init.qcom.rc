@@ -160,6 +160,10 @@ on boot
     mkdir /persist/secnvm 0770 system system
     restorecon_recursive /persist
 
+    #Script for Treble compatibility fixups
+      exec - root -- /vendor/bin/init.treble.sh
+
+
     # Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
 

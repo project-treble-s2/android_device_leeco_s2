@@ -37,10 +37,10 @@ fi
 . "${HELPER}"
 
 # Initialize the helper
-setup_vendor "${DEVICE}" "${VENDOR}" "${LINEAGE_ROOT}"
+setup_vendor "${DEVICE}" "${VENDOR}" "${LINEAGE_ROOT}" true
 
 # Copyright headers and guards
-write_headers
+write_headers "s2"
 
 write_makefiles "${MY_DIR}"/proprietary-files.txt
 

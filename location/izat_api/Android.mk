@@ -4,6 +4,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := izat_remote_api_headers
+LOCAL_VENDOR_MODULE := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HEADER_LIBRARY)
 

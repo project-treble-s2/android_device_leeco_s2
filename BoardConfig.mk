@@ -127,7 +127,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI
 
 # Camera
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
-	/system/bin/mm-qcamera-daemon=23
+	/vendor/bin/mm-qcamera-daemon=23
 
 # Display
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
@@ -171,6 +171,12 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 57033596416
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
+BOARD_VENDORIMAGE_PARTITION_SIZE := 649523200
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_USES_MKE2FS := true
 
 # Filesystem Config
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
@@ -204,8 +210,15 @@ TARGET_HAS_NO_WLAN_STATS := true
 TARGET_RPM_SYSTEM_STAT := /d/rpm_stats
 TARGET_USES_INTERACTION_BOOST := true
 
-# Properties
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+## Treble
+PRODUCT_FULL_TREBLE_OVERRIDE := true
+PRODUCT_VENDOR_MOVE_ENABLED := true
+TARGET_COPY_OUT_VENDOR := vendor
+
+PRODUCT_SHIPPING_API_LEVEL := 23
+
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+TARGET_VENDOR_PROP += $(PLATFORM_PATH)/vendor.prop
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
@@ -230,11 +243,11 @@ BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-   /system/lib64/lib-imsvt.so|libshims_ims.so \
-   /system/bin/mm-qcamera-daemon|libshims_camera.so \
-   /system/lib64/hw/gxfingerprint.default.so|fakelogprint.so \
-   /system/lib64/hw/fingerprint.vendor.msm8952.so|fakelogprint.so \
-   /system/bin/gx_fpd|fakelogprint.so
+   /vendor/lib64/lib-imsvt.so|libshims_ims.so \
+   /vendor/bin/mm-qcamera-daemon|libshims_camera.so \
+   /vendor/lib64/hw/gxfingerprint.default.so|fakelogprint.so \
+   /vendor/lib64/hw/fingerprint.vendor.msm8952.so|fakelogprint.so \
+   /vendor/bin/gx_fpd|fakelogprint.so
 
 # Telephony
 TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true

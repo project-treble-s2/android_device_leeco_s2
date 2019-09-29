@@ -20,6 +20,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libshims_ims
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := media/fence.cpp
+LOCAL_VENDOR_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
 # libshims_camera
@@ -33,6 +34,7 @@ LOCAL_SHARED_LIBRARIES := libc
 
 LOCAL_MODULE := libshims_camera
 LOCAL_MODULE_TAGS := optional
+LOCAL_VENDOR_MODULE := true
 
 LOCAL_32_BIT_ONLY := true
 
@@ -48,5 +50,6 @@ LOCAL_SRC_FILES := fakelogprint/fakelogprint.cpp
 
 LOCAL_MODULE := fakelogprint
 LOCAL_MODULE_TAGS := optional
+LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 include $(BUILD_SHARED_LIBRARY)

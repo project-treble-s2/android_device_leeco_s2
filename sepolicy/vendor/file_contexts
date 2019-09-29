@@ -3,7 +3,7 @@
 
 # Camera
 /data/vendor/qcam(/.*)?                                    u:object_r:vendor_camera_data_file:s0
-/system/bin/mm-qcamera-daemon                              u:object_r:mm-qcamerad_exec:s0
+/vendor/bin/mm-qcamera-daemon                              u:object_r:mm-qcamerad_exec:s0
 
 # Capacitive Keys
 /(vendor|system/vendor)/bin/init\.proc_touchpanel\.sh                                          u:object_r:vendor_init_proc_touchpanel_exec:s0
@@ -18,7 +18,7 @@
 
 # Fingerprint
 /(vendor|system/vendor|system)/bin/gx_fpd                  u:object_r:goodix_exec:s0
-/system/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.leeco_s2   u:object_r:hal_fingerprint_default_exec:s0
+/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.leeco_s2   u:object_r:hal_fingerprint_default_exec:s0
 
 /dev/goodix_fp                                             u:object_r:goodix_device:s0
 

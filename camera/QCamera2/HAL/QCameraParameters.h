@@ -19,7 +19,8 @@
 #ifndef ANDROID_HARDWARE_QCAMERA_PARAMETERS_H
 #define ANDROID_HARDWARE_QCAMERA_PARAMETERS_H
 
-#include <camera/CameraParameters.h>
+// System dependencies
+#include <CameraParameters.h>
 #include <cutils/properties.h>
 #include <hardware/camera.h>
 #include <stdlib.h>
@@ -33,6 +34,8 @@ extern "C" {
 #include <mm_jpeg_interface.h>
 }
 
+using ::android::hardware::camera::common::V1_0::helper::CameraParameters;
+using ::android::hardware::camera::common::V1_0::helper::Size;
 using namespace android;
 
 namespace qcamera {

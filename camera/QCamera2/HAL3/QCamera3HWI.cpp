@@ -33,7 +33,7 @@
 #define __STDC_LIMIT_MACROS
 #include <cutils/properties.h>
 #include <hardware/camera3.h>
-#include <camera/CameraMetadata.h>
+#include <CameraMetadata.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -811,11 +811,11 @@ int QCamera3HardwareInterface::validateStreamDimensions(
             }
             break;
         } /* End of switch(newStream->format) */
-		
+
 		/*
 		@nullbytepl patch:
 		Allow 2160p streams, even though we aren't advertising it
-		
+
 		Original patch by @anubioz, improved by @nullbytepl
 		*/
 		if ((int32_t)newStream->width == 3840 && (int32_t)newStream->height == 2160){
@@ -829,8 +829,8 @@ int QCamera3HardwareInterface::validateStreamDimensions(
 				break;
 			}
 		}
-		
-        
+
+
     } /* End of for each stream */
     return rc;
 }
@@ -5213,13 +5213,13 @@ int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
 	if(!gCamCapability[cameraId]->picture_sizes_tbl_cnt){
 		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt is null! Return 123 code and allow it to properly initalize (cameraId=%d)", (int) cameraId);
 		return 123;
-		
+
 	}
 	if(gCamCapability[cameraId]->picture_sizes_tbl_cnt < 5){ // In theory it should always == 13, but lets set it to under 5 for security
 		ALOGW("initStaticMetadata(): picture_sizes_tbl_cnt equals %d! Return 123 code and allow it to properly initalize (cameraId=%d)", (int) gCamCapability[cameraId]->picture_sizes_tbl_cnt, (int) cameraId);
 		return 123;
 	}
-	
+
     int rc = 0;
     CameraMetadata staticInfo;
     size_t count = 0;

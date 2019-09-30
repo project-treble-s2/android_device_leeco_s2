@@ -22,7 +22,7 @@ vendor.audio.offload.pcm.24bit.enable=true \
 vendor.audio.playback.mch.downsample=true \
 vendor.voice.playback.conc.disabled=true \
 vendor.audio.safx.pbe.enabled=true \
-vendor.audio.tunnel.encode = false \
+vendor.audio.tunnel.encode=false \
 vendor.audio.use.sw.alac.decoder=true \
 vendor.audio.use.sw.ape.decoder=true \
 vendor.voice.conc.fallbackpath=deep-buffer \
@@ -131,7 +131,7 @@ ro.qualcomm.cabl=0 \
 vendor.display.disable_skip_validate=1 \
 vendor.display.enable_default_color_mode=1 \
 vendor.display.perf_hint_window=50 \
-vendor.gralloc.enable_fb_ubwc=1 \
+vendor.gralloc.enable_fb_ubwc=1
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -158,7 +158,7 @@ persist.rild.nitz_long_ons_3="" \
 persist.rild.nitz_short_ons_0="" \
 persist.rild.nitz_short_ons_1="" \
 persist.rild.nitz_short_ons_2="" \
-persist.rild.nitz_short_ons_3=
+persist.rild.nitz_short_ons_3=""
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -176,7 +176,7 @@ ro.vendor.qti.am.reschedule_service=true
 PRODUCT_PROPERTY_OVERRIDES += \
 DEVICE_PROVISIONED=1 \
 ril.subscription.types=RUIM \
-rild.libargs=-d /dev/smd0 \
+rild.libargs=d/dev/smd0 \
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
 ro.telephony.default_network=22,20 \
 ro.config.vc_call_vol_steps=7 \
@@ -201,7 +201,7 @@ persist.vendor.radio.sib16_support=1 \
 persist.vendor.radio.start_ota_daemon=1 \
 persist.vendor.radio.sw_mbn_update=0 \
 persist.data.qmi.adb_logmask=0 \
-persist.radio.aosp_usr_pref_sel=true \
+persist.radio.aosp_usr_pref_sel=true
 
 # TCP
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -160,6 +160,10 @@ on boot
     mkdir /persist/secnvm 0770 system system
     restorecon_recursive /persist
 
+    #Script for Treble compatibility fixups
+      exec - root -- /vendor/bin/init.treble.sh
+
+
     # Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
 
@@ -225,9 +229,6 @@ on post-fs-data
 
     # Create directory used by media clients
     mkdir /data/vendor/media 0770 mediacodec media
-
-    #Script for Treble compatibility fixups
-      exec - root -- /vendor/bin/init.treble.sh
 
     # create QDMA dropbox
     mkdir /data/vendor/qdmastats 0700 system system
@@ -385,6 +386,8 @@ on post-fs-data
     mkdir /data/vendor/vpp 0770 media media
 
 on property:sys.boot_completed=1
+    restart qcamerasvr
+    restart vendor.camera-provider-2-4
     setprop vendor.post_boot.parsed 1
     write /dev/kmsg "Boot completed "
     #WDSP FW boot sysfs node used by STHAL

@@ -240,8 +240,8 @@ on property:vendor.ims.DATA_DAEMON_STATUS=1
 
 service gx_fpd /vendor/bin/gx_fpd
     class late_start
-    user root
-    group root system
+    user system
+    group system
 
 on charger
     start vendor.qcom-post-boot

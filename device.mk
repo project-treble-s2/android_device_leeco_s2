@@ -367,6 +367,12 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libxml2
 
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.va_aosp.support=1
+
+PRODUCT_ODM_PROPERTIES += \
+    ro.vendor.qti.va_odm.support=1
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \

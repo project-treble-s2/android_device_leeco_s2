@@ -28,12 +28,6 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <cstdlib>
-#include <unistd.h>
-#include <fcntl.h>
-#include <android-base/logging.h>
-#include <android-base/properties.h>
-
 #include "property_service.h"
 #include "vendor_init.h"
 
@@ -42,7 +36,23 @@
 
 #define DEVINFO_FILE "/dev/block/bootdevice/by-name/devinfo"
 
-using android::init::property_set;
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
+
+void property_override_triple(char const product_prop[], char const system_prop[], char const vendor_prop[], char const value[])
+{
+    property_override(product_prop, value);
+    property_override(system_prop, value);
+    property_override(vendor_prop, value);
+}
 
 static int read_file2(const char *fname, char *data, int max_size)
 {
@@ -90,26 +100,26 @@ void vendor_load_properties() {
     if (isX520)
     {
         // This is X520
-        property_set("ro.product.model", "X520");
+        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "X520");
     }
     else if (isX522)
     {
         // This is X522
-        property_set("ro.product.model", "X522");
+        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "X522");
     }
     else if (isX526)
     {
         // This is X526
-        property_set("ro.product.model", "X526");
+        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "X526");
     }
     else if (isX527)
     {
         // This is X527
-        property_set("ro.product.model", "X527");
+        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "X527");
     }
     else
     {
         // Unknown variant
-        property_set("ro.product.model", "X52X");
+        property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "X52X");
     }
 }

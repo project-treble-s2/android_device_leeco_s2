@@ -16,12 +16,6 @@
 /dev/ttyHSL1                                               u:object_r:consumer_ir_device:s0
 /sys/remote/enable                                         u:object_r:sysfs_ir_enable:s0
 
-# DRM
-/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.1-service.clearkey               u:object_r:hal_drm_clearkey_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.1-service.widevine               u:object_r:hal_drm_widevine_exec:s0
-
-/data/vendor/mediadrm(/.*)?                                                               u:object_r:mediadrm_vendor_data_file:s0
-
 # Fingerprint
 /(vendor|system/vendor|system)/bin/gx_fpd                  u:object_r:goodix_exec:s0
 /system/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.leeco_s2   u:object_r:hal_fingerprint_default_exec:s0
@@ -32,7 +26,6 @@
 /firmware                                                  u:object_r:firmware_file:s0
 
 # Perf
-/system/bin/perfservice                                                                   u:object_r:perfservice_exec:s0
 /sys/devices/soc\.0/[a-z0-9]+\.qcom,msmcci-ccimon(/.*)?                                   u:object_r:sysfs_devfreq:s0
 /sys/devices/soc\.0/qcom,gpubw\.[a-z0-9]+/devfreq/qcom,gpubw\.[a-z0-9]+(/.*)?             u:object_r:sysfs_devfreq:s0
 /sys/devices/soc\.0/qcom,cpubw\.[a-z0-9]+/devfreq/qcom,cpubw\.[a-z0-9]+(/.*)?             u:object_r:sysfs_devfreq:s0
@@ -47,7 +40,6 @@
 /(mnt/vendor)/persist/data/tz(/.*)?                                                       u:object_r:persist_drm_file:s0
 /(mnt/vendor)/persist/data/sfs(/.*)?                                                      u:object_r:persist_drm_file:s0
 /(mnt/vendor)/persist/qti_fp(/.*)?                                                        u:object_r:persist_qti_fp_file:s0
-/(mnt/vendor)/persist/usf(/.*)?                                                           u:object_r:persist_usf_file:s0
 /(mnt/vendor)/persist/hlos_rfs(/.*)?                                                      u:object_r:rfs_shared_hlos_file:s0
 /(mnt/vendor)/persist/display(/.*)?                                                       u:object_r:persist_display_file:s0
 /(mnt/vendor)/persist/rfs.*                                                               u:object_r:rfs_file:s0

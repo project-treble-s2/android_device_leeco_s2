@@ -4,8 +4,4 @@ serialno                          u:object_r:serialno_prop:s0
 vendor.min_freq_0                 u:object_r:vendor_mpctl_prop:s0
 vendor.min_freq_4                 u:object_r:vendor_mpctl_prop:s0
 
-vendor.perf.cores_online          u:object_r:vendor_mpctl_prop:s0
-
-ro.vendor.alarm_boot              u:object_r:vendor_alarm_prop:s0
-
 persist.vendor.service.bdroid.bdaddr       u:object_r:bluetooth_prop:s0

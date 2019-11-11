@@ -468,9 +468,12 @@ vendor/lib64/libqmi_encdec.so
 vendor/lib64/libqmiservices.so
 vendor/lib64/libsmemlog.so
 
-# QMI - from LA.UM.8.6.r1-01900-89xx.0
-vendor/lib/libqmi_cci.so|5a48201e565516a2fdff11c228162d2eda733fe5
-vendor/lib64/libqmi_cci.so|d5c4f4ad1a484fd00066b8f054877fc7dae77f8b
+# QMI - from LA.UM.8.6.2.r1-03700-89xx.0
+vendor/lib/libpdmapper.so|39c27a67e2030a1cf30d1ee8742258170612f31c
+vendor/lib/libqmi_cci.so|88f1cf78bba4c9fd28c17e00f9d87f6ecb9628d5
+vendor/lib64/libpdmapper.so|82c7c597432dfade23335cc3675b816a1ff10d84
+vendor/lib64/libqmi_cci.so|c279aaab35dcf2b8d2a839204eac2db275dd62cc
+vendor/lib64/libqsocket.so|7a2b9cbf3226af9702e9df51147558b2ef3f59da
 
 # Radio
 -app/QtiTelephonyService/QtiTelephonyService.apk

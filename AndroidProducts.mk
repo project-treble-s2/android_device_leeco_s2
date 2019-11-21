@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019 The ArrowOS Project
+# Copyright (C) 2019 The aospOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/arrow_s2.mk
+    $(LOCAL_DIR)/aosp_s2.mk
 
 COMMON_LUNCH_CHOICES := \
-    arrow_s2-user \
-    arrow_s2-userdebug \
-    arrow_s2-eng
+    aosp_s2-user \
+    aosp_s2-userdebug \
+    aosp_s2-eng

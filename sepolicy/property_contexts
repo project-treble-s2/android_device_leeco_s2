@@ -1,7 +1,0 @@
-oem.device.imeicache              u:object_r:qcom_ims_prop:s0
-serialno                          u:object_r:serialno_prop:s0
-
-vendor.min_freq_0                 u:object_r:vendor_mpctl_prop:s0
-vendor.min_freq_4                 u:object_r:vendor_mpctl_prop:s0
-
-persist.vendor.service.bdroid.bdaddr       u:object_r:bluetooth_prop:s0

@@ -213,7 +213,7 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/ad_calib.cfg:$(TARGET_COPY_OUT_SYSTEM)/etc/ad_calib.cfg
+    $(LOCAL_PATH)/configs/ad_calib.cfg:$(TARGET_COPY_OUT_VENDOR)/etc/ad_calib.cfg
 
 # Device specific settings
 PRODUCT_PACKAGES += \
@@ -336,7 +336,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/perf/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml \
     $(LOCAL_PATH)/configs/perf/targetconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetconfig.xml \
     $(LOCAL_PATH)/configs/perf/targetresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetresourceconfigs.xml \
-    $(LOCAL_PATH)/configs/perf/whitelistedapps.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/perf/whitelistedapps.xml
+    $(LOCAL_PATH)/configs/perf/whitelistedapps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/whitelistedapps.xml
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/perf/perf-profile0.conf:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.conf \
@@ -440,7 +440,7 @@ PRODUCT_PACKAGES += \
 
 # Whitelisted app
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/qti_whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/qti_whitelist.xml
+    $(LOCAL_PATH)/configs/qti_whitelist.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/qti_whitelist.xml
 
 # VNDK-SP:
 PRODUCT_PACKAGES += \
@@ -465,6 +465,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_cfg.ini
+
+# Properties
+include $(LOCAL_PATH)/vendor_prop.mk
 
 # SDcard
 PRODUCT_CHARACTERISTICS := nosdcard

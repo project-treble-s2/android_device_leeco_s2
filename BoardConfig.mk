@@ -213,9 +213,6 @@ TARGET_PER_MGR_ENABLED := true
 TARGET_RPM_SYSTEM_STAT := /d/rpm_stats
 TARGET_USES_INTERACTION_BOOST := true
 
-# Properties
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USE_SDCLANG := true

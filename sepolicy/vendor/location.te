@@ -1,0 +1,1 @@
+allow location sysfs:dir { r_dir_perms };

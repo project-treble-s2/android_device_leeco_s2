@@ -1,0 +1,3 @@
+allow qti_init_shell sysfs:file { w_file_perms };
+set_prop(qti_init_shell, vendor_mpctl_prop);
+set_prop(qti_init_shell, vendor_alarm_prop);

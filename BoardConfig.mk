@@ -114,6 +114,11 @@ WITH_LINEAGE_CHARGER := false
 # CSVT
 TARGET_USES_CSVT := true
 
+#LiveDisplay
+ifeq ($(filter surnia,$(TARGET_DEVICE)),)
+DEVICE_MANIFEST_FILE += $(VENDOR_PATH)/live_display_manifest.xml
+endif
+
 # Dex
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)

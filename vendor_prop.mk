@@ -63,7 +63,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 camera.lowpower.record.enable=1 \
 camera.hal1.packagelist=com.skype.raider,com.google.android.talk \
 persist.camera.HAL3.enabled=1 \
+persist.camera.s2.restart=0 \
 persist.vendor.qti.telephony.vt_cam_interface=1
+vendor.camera.hal1.packagelist=com.facebook.katana,com.facebook.orca,com.instagram.android,com.viber.voip,com.whatsapp
 
 # Additional buffers shared between Camera and Video
 PRODUCT_PROPERTY_OVERRIDES += \
